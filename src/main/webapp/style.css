@@ -8,6 +8,24 @@ ul {
     margin: 20px
 }
 
+.btn {
+    font-family: 'Courier New', Courier, monospace;
+    border: 2px solid #D3D0CB;
+    border-radius: 2px;
+    text-align: center;
+    color: #393E41;
+    background-color: #D3D0CB;
+    user-select: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #B3B09B;
+    border: 2px solid #B3B09B;
+}
+
+
+
 .chatWindow {
     border: 5px solid #E2C044;
 }
