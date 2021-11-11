@@ -1,0 +1,13 @@
+html {
+background-color: #393E41;
+color: #D3D0CB;
+}
+
+ul {
+    list-style-type: none;
+    margin: 20px
+}
+
+.chatWindow {
+    border: 5px solid #E2C044;
+}
