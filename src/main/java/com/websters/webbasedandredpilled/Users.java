@@ -10,7 +10,7 @@ public class Users {
     @Setter
     @Getter
     @Id
-    private String id;
+    private String id;//do not include in any of the constuctors
     @Getter
     @Setter
     private String userName;
