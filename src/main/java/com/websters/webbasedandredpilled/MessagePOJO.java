@@ -1,4 +1,4 @@
 package com.websters.webbasedandredpilled;
 
-public class User {
+public class MessagePOJO {
 }
