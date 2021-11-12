@@ -20,6 +20,12 @@ public class Users {
     @Getter
     @Setter
     private String email;
+    @Getter
+    @Setter
+    private String role;
+    @Getter
+    @Setter
+    private boolean isActive;
 
     public Users(String userName, String passWord, String email) {
         this.userName = userName;
