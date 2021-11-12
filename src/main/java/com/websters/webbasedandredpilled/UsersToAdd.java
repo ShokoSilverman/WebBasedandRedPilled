@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class Users {
+public class UsersToAdd {
     @Setter
     @Getter
     @Id
@@ -27,7 +27,7 @@ public class Users {
     @Setter
     private boolean isActive;
 
-    public Users(String userName, String passWord, String email, String[] securityRoles, boolean isActive) {
+    public UsersToAdd(String userName, String passWord, String email, String[] securityRoles, boolean isActive) {
         this.userName = userName;
         this.passWord = passWord;
         this.email = email;
@@ -35,5 +35,5 @@ public class Users {
         this.isActive = isActive;
     }
 
-    public Users(){}
+    public UsersToAdd(){}
 }
