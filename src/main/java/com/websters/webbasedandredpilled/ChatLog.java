@@ -25,4 +25,8 @@ public class ChatLog {
         this.messages = messages;
     }
     public ChatLog(){}
+
+    public void setMessagesList(ArrayList<MessagePOJO> messageList){
+        messages = messageList.toArray(MessagePOJO[]::new);
+    }
 }
