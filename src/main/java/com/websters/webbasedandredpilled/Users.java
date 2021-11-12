@@ -22,15 +22,17 @@ public class Users {
     private String email;
     @Getter
     @Setter
-    private String role;
+    private String[] securityRoles;
     @Getter
     @Setter
     private boolean isActive;
 
-    public Users(String userName, String passWord, String email) {
+    public Users(String userName, String passWord, String email, String[] securityRoles, boolean isActive) {
         this.userName = userName;
         this.passWord = passWord;
         this.email = email;
+        this.securityRoles = securityRoles;
+        this.isActive = isActive;
     }
 
     public Users(){}
