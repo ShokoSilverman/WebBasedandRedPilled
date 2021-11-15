@@ -16,19 +16,15 @@ public class MessagePOJO {
     private String sentBy;
     @Getter
     @Setter
-    private LocalDateTime timeSent;
+    private String timeSent;
 
-    public MessagePOJO(String messageContent, String sentBy, LocalDateTime timeSent) {
+    public MessagePOJO(String messageContent, String sentBy) {
         this.messageContent = messageContent;
         this.sentBy = sentBy;
-        this.timeSent = timeSent;
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        this.timeSent = LocalDateTime.now().format(myFormatObj);
     }
 
     public MessagePOJO(){}
 
-    public String getTimeAsString(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
-        String timeAsString = timeSent.format(dtf);
-        return timeAsString;
-    }
 }

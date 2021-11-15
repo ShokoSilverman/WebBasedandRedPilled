@@ -3,6 +3,7 @@ package com.websters.webbasedandredpilled;
 
 import com.websters.webbasedandredpilled.Repos.ChatLogRepo;
 import com.websters.webbasedandredpilled.Repos.ErrorLogRepo;
+import com.websters.webbasedandredpilled.Repos.MessageRepo;
 import com.websters.webbasedandredpilled.Repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class MongoDAL {
     private ChatLogRepo chatLogRepo;
     @Autowired
     private ErrorLogRepo errorLogRepo;
+    @Autowired
+    private MessageRepo messageRepo;
 
     @PostConstruct
     private void connectionTest(){
@@ -31,7 +34,7 @@ public class MongoDAL {
         String startTime = LocalDateTime.now().format(myFormatObj);
         System.out.println("start time " + startTime);
         UsersToAdd testUser = new UsersToAdd("newName", "testPass", "email@gmail.com", new String[]{"USER", "ADMIN"}, true);
-        writeUser(testUser);//use this to test and turn on db
+        //writeUser(testUser);//use this to test and turn on db
         ChatLog newChatLog = new ChatLog("newUser", new MessagePOJO[]{});
         //writeChatLog(newChatLog);
         ErrorLog newErrorLog = new ErrorLog( "spooky stack trace", "hella broken");
@@ -40,6 +43,8 @@ public class MongoDAL {
         //System.out.println(newUserName("email@email.com", "testPass", "newName"));
         //System.out.println(newPassWord("email@email.com", "testPass", "newPass"));
         //userNameList();
+        MessagePOJO newMessage = new MessagePOJO("this is a message", "josh");
+        //writeMessage(newMessage);
 
     }
 
@@ -63,6 +68,11 @@ public class MongoDAL {
         chatLogRepo.save(newChatLog);
         System.out.println("ChatLog saved");
 
+    }
+
+    private void writeMessage(MessagePOJO message){
+        messageRepo.save(message);
+        System.out.println("message saved");
     }
 
     //read in all users
