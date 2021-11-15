@@ -16,7 +16,7 @@ public class ErrorLog {
     private String id;
     @Getter
     @Setter
-    private LocalDateTime time;
+    private String time;
     @Getter
     @Setter
     private String stackTrace;
@@ -24,17 +24,13 @@ public class ErrorLog {
     @Setter
     private String errorType;
 
-    public ErrorLog(LocalDateTime time, String stackTrace, String errorType) {
-        this.time = time;
+    public ErrorLog(String stackTrace, String errorType) {
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        this.time = LocalDateTime.now().format(myFormatObj);
         this.stackTrace = stackTrace;
         this.errorType = errorType;
     }
 
     public ErrorLog(){}
 
-    public String getTimeAsString(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
-        String timeAsString = time.format(dtf);
-        return timeAsString;
-    }
 }
