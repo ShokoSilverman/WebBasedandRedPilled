@@ -6,11 +6,26 @@
     <link href='style.css' rel='stylesheet'>
 </head>
 <body>
-    <div class='chatWindow'>
-        test text
+    <div id='header'>
+        <div class='btn'>Logout</div>
     </div>
-    <div style='display: flex' id='messageBox'>
-        <textarea id='message' style='resize: none;'></textarea>
+    <div id='mainContent'>
+        <div id='chatWindow'>
+            <p>
+                "Hey"
+            </p>
+        </div>
+        <div id='userList'>
+            <p>
+                user 1
+            </p>
+            <p>
+                user 2
+            </p>
+        </div>
+    </div>
+    <div id='messageBox'>
+        <textarea id='message' rows='1'></textarea>
         <div class='btn' id='messageBtn'>Enter</div>
     </div>
 </body>

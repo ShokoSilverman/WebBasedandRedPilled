@@ -1,15 +1,14 @@
 html {
-background-color: #393E41;
+background-color: #2b2f31;
 color: #D3D0CB;
+font-family: 'Courier New', Courier, monospace;
 }
 
 ul {
-    list-style-type: none;
-    margin: 20px
+    list-style-type: none;  
 }
 
 .btn {
-    font-family: 'Courier New', Courier, monospace;
     border: 2px solid #D3D0CB;
     border-radius: 2px;
     text-align: center;
@@ -20,12 +19,84 @@ ul {
 }
 
 .btn:hover {
-    background-color: #B3B09B;
-    border: 2px solid #B3B09B;
+    background-color: #a7a4a0;
+    border: 2px solid #a7a4a0;
 }
 
+.password_box {
+    -webkit-text-security: disc;
+}
 
+#chadRoomTitle {
+    text-align: center;
+    font-size: 100px;
+    border-bottom: solid 10px #F49F0A;
+}
 
-.chatWindow {
-    border: 5px solid #E2C044;
+#login {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 60vh;
+}
+
+#header {
+    position: absolute;
+    display: flex;
+    justify-content: end;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 40px;
+    background-color: #1b1f21;
+}
+
+#mainContent {
+    display: flex;
+}
+
+#chatWindow {
+    position: absolute;
+    background-color: #393E41;
+    top: 40px;
+    left: 0;
+    right: 225px;
+    bottom: 60px;
+    padding: 20px
+}
+
+#userList {
+    position: absolute;
+    background-color: #2b2f31;  
+    width: 200px;
+    top: 40px;
+    right: 0;  
+    bottom: 60px;
+    padding: 10px;
+}
+
+#messageBox {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 10px solid #393E41;
+    background-color: #393E41;
+}
+
+#message {
+    flex-grow: 1;
+    font-size: large;
+    resize: none;
+    margin-right: 10px;
+    background-color: #2b2f31;
+    color: #D3D0CB;
+    border: 1px solid #2b2f31;
+}
+
+#messageBtn {
+    width: 5%;
+    line-height: 200%;
+    border-radius: 0%;
 }
