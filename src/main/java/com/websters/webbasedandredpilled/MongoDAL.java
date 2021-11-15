@@ -45,6 +45,7 @@ public class MongoDAL {
         //userNameList();
         MessagePOJO newMessage = new MessagePOJO("this is a message", "josh");
         //writeMessage(newMessage);
+        System.out.println(userExists("newName", "newPass"));
 
     }
 
@@ -138,9 +139,11 @@ public class MongoDAL {
     public boolean userExists(String userName, String password){
         List<UsersToAdd> usersToAddList = userRepo.findByUserNameEquals(userName);
         if (usersToAddList.get(0) != null){
+            //throw an custom error if password incorrect
             return password.equals(usersToAddList.get(0).getPassWord());//returns true if password matches //false if incorrect password
         }else{
-            return false;//false if user does not exists
+            return false;//false if user does not exist
+            //throw custom error if the user does not exist
         }
 
     }
