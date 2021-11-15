@@ -8,6 +8,6 @@ public class MainControllerBLL {
     //List of all Errors that occur while User is on any page
     public ArrayList<ErrorLog> errorList = new ArrayList<>();
 
-   
+
 
 }
