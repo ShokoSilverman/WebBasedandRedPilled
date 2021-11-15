@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.management.openmbean.KeyAlreadyExistsException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,24 +30,27 @@ public class MongoDAL {
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String startTime = LocalDateTime.now().format(myFormatObj);
         System.out.println("start time " + startTime);
-        UsersToAdd testUser = new UsersToAdd("testUser", "testPass", "email@email.com", new String[]{"USER", "ADMIN"}, true);
-        //writeUser(testUser);//use this to test and turn on db
+        UsersToAdd testUser = new UsersToAdd("newName", "testPass", "email@gmail.com", new String[]{"USER", "ADMIN"}, true);
+        writeUser(testUser);//use this to test and turn on db
         ChatLog newChatLog = new ChatLog("newUser", new MessagePOJO[]{});
         //writeChatLog(newChatLog);
         ErrorLog newErrorLog = new ErrorLog("now", "spooky stack trace", "hella broken");
         //writeError(newErrorLog);
         //System.out.println(setIsActive("email@email.com", false));
         //System.out.println(newUserName("email@email.com", "testPass", "newName"));
-        System.out.println(newPassWord("email@email.com", "testPass", "newPass"));
+        //System.out.println(newPassWord("email@email.com", "testPass", "newPass"));
+        //userNameList();
 
     }
 
     private void writeUser(UsersToAdd newUser){
         //test values for db connection
         if (userRepo.findById(newUser.getEmail()).isPresent()){
-            throw new KeyAlreadyExistsException("User already exists");
+            throw new KeyAlreadyExistsException("User already exists");//if the email exists already, get mad
         }
-        //add a check to see if the username already exists
+        if (userRepo.findByUserNameEquals(newUser.getUserName()).size() > 0){
+            throw new KeyAlreadyExistsException("User already exists");//if the name exists already get mad
+        }
         userRepo.save(newUser);
         System.out.println("user saved");
     }
@@ -67,8 +71,6 @@ public class MongoDAL {
 
     //active on off
     public String setIsActive(String email, boolean setActive){ //true = is active | false = not active //takes in the email because it is the ID
-        //ask travis how to query on something that isnt the id
-
         Optional<UsersToAdd> userToAddOpt = userRepo.findById(email);
         if (userToAddOpt.isPresent()){
             UsersToAdd userToAdd = userToAddOpt.get(); //only grabs if it exists
@@ -82,6 +84,9 @@ public class MongoDAL {
 
     public String newUserName(String email, String passWord, String newUserName){
         Optional<UsersToAdd> userToAddOpt = userRepo.findById(email);
+        if (userRepo.findByUserNameEquals(newUserName).size() > 0){
+            throw new KeyAlreadyExistsException("User already exists");//if the name exists already get mad
+        }
         if (userToAddOpt.isPresent()){ //check if user exists
             UsersToAdd userToAdd = userToAddOpt.get();
             if (passWord.equals(userToAdd.getPassWord())){//check if incorrect password
@@ -109,6 +114,14 @@ public class MongoDAL {
             }
         }else{
             return "User not found";
+        }
+    }
+
+    public void userNameList(){
+        System.out.println("getting lists of names");
+        List<UsersToAdd> userNameList = userRepo.findByUserNameEquals("newName");
+        for(UsersToAdd usersToAdd: userNameList){
+            System.out.println(usersToAdd.getUserName());
         }
     }
 
