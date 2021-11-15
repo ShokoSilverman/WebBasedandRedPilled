@@ -6,11 +6,11 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class Users {
-    @Setter
-    @Getter
-    @Id
-    private String id;//do not include in any of the constuctors
+public class UsersToAdd {
+//    @Setter
+//    @Getter
+//    @Id
+    //private String id;//do not include in any of the constuctors
     @Getter
     @Setter
     private String userName;
@@ -19,6 +19,7 @@ public class Users {
     private String passWord;
     @Getter
     @Setter
+    @Id
     private String email;
     @Getter
     @Setter
@@ -27,7 +28,7 @@ public class Users {
     @Setter
     private boolean isActive;
 
-    public Users(String userName, String passWord, String email, String[] securityRoles, boolean isActive) {
+    public UsersToAdd(String userName, String passWord, String email, String[] securityRoles, boolean isActive) {
         this.userName = userName;
         this.passWord = passWord;
         this.email = email;
@@ -35,5 +36,6 @@ public class Users {
         this.isActive = isActive;
     }
 
-    public Users(){}
+    public UsersToAdd(){}
+
 }

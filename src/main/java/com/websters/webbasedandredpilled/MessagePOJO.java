@@ -24,6 +24,8 @@ public class MessagePOJO {
         this.timeSent = timeSent;
     }
 
+    public MessagePOJO(){}
+
     public String getTimeAsString(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
         String timeAsString = timeSent.format(dtf);
