@@ -135,6 +135,16 @@ public class MongoDAL {
         }
     }
 
+    public boolean userExists(String userName, String password){
+        List<UsersToAdd> usersToAddList = userRepo.findByUserNameEquals(userName);
+        if (usersToAddList.get(0) != null){
+            return password.equals(usersToAddList.get(0).getPassWord());//returns true if password matches //false if incorrect password
+        }else{
+            return false;//false if user does not exists
+        }
+
+    }
+
 
 
 }
