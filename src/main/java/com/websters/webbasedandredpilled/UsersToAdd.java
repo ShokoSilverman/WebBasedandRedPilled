@@ -7,10 +7,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class UsersToAdd {
-    @Setter
-    @Getter
-    @Id
-    private String id;//do not include in any of the constuctors
+//    @Setter
+//    @Getter
+//    @Id
+    //private String id;//do not include in any of the constuctors
     @Getter
     @Setter
     private String userName;
@@ -19,6 +19,7 @@ public class UsersToAdd {
     private String passWord;
     @Getter
     @Setter
+    @Id
     private String email;
     @Getter
     @Setter
@@ -36,4 +37,5 @@ public class UsersToAdd {
     }
 
     public UsersToAdd(){}
+
 }
