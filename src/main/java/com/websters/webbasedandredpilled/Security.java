@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -38,15 +39,15 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .roles("ADMIN").build();
         memAuth.createUser(newAdmin);
 
-        ArrayList<UsersToAdd> userList = (ArrayList<UsersToAdd>) userRepo.findAll();
-        for(UsersToAdd user : userList){
-            UserDetails newUserAdd = User.withUsername(user.getUserName())
-                    .password(passEncode().encode(user.getPassWord()))
-                    .roles(user.getSecurityRoles()).build();
-            memAuth.createUser(newUserAdd);
-        }
+//        ArrayList<UsersToAdd> userList = (ArrayList<UsersToAdd>) userRepo.findAll();
+//        for(UsersToAdd user : userList){
+//            UserDetails newUserAdd = User.withUsername(user.getUsername())
+//                    .password(passEncode().encode(user.getPassword()))
+//                    .roles(user.getSecurityRoles()).build();
+//            memAuth.createUser(newUserAdd);
+//        }
 
-        auth.userDetailsService(memAuth);
+        auth.userDetailsService(getUserDetailsService());
 
     }
     // ///////////////////////////////////////////
@@ -76,5 +77,11 @@ public class Security extends WebSecurityConfigurerAdapter {
     public InMemoryUserDetailsManager getInMemoryUserDetailsManager(){
         System.out.println("*** Enter getInMemoryUserDetailsManager(");
         return memAuth;
+    }
+
+    @Bean
+    public UserDetailsService getUserDetailsService(){
+
+        return (name) -> userRepo.findFirstByUsername(name);
     }
 }
