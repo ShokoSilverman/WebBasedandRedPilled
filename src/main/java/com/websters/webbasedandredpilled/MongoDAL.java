@@ -31,7 +31,7 @@ public class MongoDAL {
         String startTime = LocalDateTime.now().format(myFormatObj);
         System.out.println("start time " + startTime);
         UsersToAdd testUser = new UsersToAdd("newName", "testPass", "email@gmail.com", new String[]{"USER", "ADMIN"}, true);
-        writeUser(testUser);//use this to test and turn on db
+        //writeUser(testUser);//use this to test and turn on db
         ChatLog newChatLog = new ChatLog("newUser", new MessagePOJO[]{});
         //writeChatLog(newChatLog);
         ErrorLog newErrorLog = new ErrorLog( "spooky stack trace", "hella broken");
