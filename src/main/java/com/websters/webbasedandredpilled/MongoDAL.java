@@ -29,7 +29,7 @@ public class MongoDAL {
     private MessageRepo messageRepo;
 
     @PostConstruct
-    private void connectionTest(){
+    public void connectionTest(){
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String startTime = LocalDateTime.now().format(myFormatObj);
         System.out.println("start time " + startTime);
@@ -49,29 +49,29 @@ public class MongoDAL {
 
     }
 
-    private void writeUser(UsersToAdd newUser){
+    public void writeUser(UsersToAdd newUser){
         //test values for db connection
         if (userRepo.findById(newUser.getEmail()).isPresent()){
-            throw new KeyAlreadyExistsException("User already exists");//if the email exists already, get mad
+            throw new KeyAlreadyExistsException("email already exists!");//if the email exists already, get mad
         }
         if (userRepo.findByUsernameEquals(newUser.getUsername()).size() > 0){
-            throw new KeyAlreadyExistsException("User already exists");//if the name exists already get mad
+            throw new KeyAlreadyExistsException("Username already exists");//if the name exists already get mad
         }
         userRepo.save(newUser);
         System.out.println("user saved");
     }
 
-    private void writeError(ErrorLog newError){
+    public void writeError(ErrorLog newError){
         errorLogRepo.save(newError);
         System.out.println("Error saved");
     }
-    private void writeChatLog(ChatLog newChatLog){
+    public void writeChatLog(ChatLog newChatLog){
         chatLogRepo.save(newChatLog);
         System.out.println("ChatLog saved");
 
     }
 
-    private void writeMessage(MessagePOJO message){
+    public void writeMessage(MessagePOJO message){
         messageRepo.save(message);
         System.out.println("message saved");
     }

@@ -8,6 +8,10 @@ app.get('/', (req, res) => {
 
 });
 
+app.get('/registration', (req, res) => {
+    res.sendFile(__dirname + '/registration.html');
+});
+
 io.on('connection', (socket) => {
     socket.on('chat message', msg => {
         io.emit('chat message', msg);
