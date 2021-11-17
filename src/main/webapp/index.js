@@ -1,10 +1,11 @@
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 81;
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/chatRoom.html');
+
 });
 
 io.on('connection', (socket) => {
