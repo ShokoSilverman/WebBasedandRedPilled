@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface UserRepo extends MongoRepository<UsersToAdd, String> {
-    List<UsersToAdd> findByUserNameEquals(String userName); //returns a list of usersToAdd with the username equal to this
+    List<UsersToAdd> findByUsernameEquals(String userName); //returns a list of usersToAdd with the username equal to this
+    UsersToAdd findFirstByUsername(String userName);
 }

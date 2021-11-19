@@ -1,0 +1,12 @@
+{
+  "name": "WebBasedAndRedpilled",
+  "version": "1.0.0",
+  "dependencies": {
+    "engine.io": "^6.1.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "mongodb": "^4.1.4",
+    "socket.io": "^4.3.2"
+  }
+}
