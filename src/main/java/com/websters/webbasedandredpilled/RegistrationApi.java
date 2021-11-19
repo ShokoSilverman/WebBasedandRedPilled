@@ -20,6 +20,7 @@ public class RegistrationApi {
     @RequestMapping(path = "/createUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(code= HttpStatus.CREATED)
     public String addUser(@RequestBody UsersToAdd newUser){
+        newUser.setPassword(mainBll.encryptPass(newUser.getPassword()));
         try{
             mongoDAL.writeUser(newUser);
         }catch (KeyAlreadyExistsException keyE){

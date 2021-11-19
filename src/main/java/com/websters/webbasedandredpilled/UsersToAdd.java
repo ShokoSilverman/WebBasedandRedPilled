@@ -27,9 +27,9 @@ public class UsersToAdd implements UserDetails {
     private String[] securityRoles;
     private boolean isActive;
 
-    public UsersToAdd(String userName, String passWord, String email, String[] securityRoles, boolean isActive) {
-        this.username = userName;
-        this.password = passWord;
+    public UsersToAdd(String username, String password, String email, String[] securityRoles, boolean isActive) {
+        this.username = username;
+        this.password = password;
         this.email = email;
         this.securityRoles = securityRoles;
         this.isActive = isActive;

@@ -28,6 +28,9 @@ public class MongoDAL {
     @Autowired
     private MessageRepo messageRepo;
 
+    @Autowired
+    private MainControllerBLL mainControllerBLL;
+
     @PostConstruct
     public void connectionTest(){
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
@@ -46,6 +49,7 @@ public class MongoDAL {
         MessagePOJO newMessage = new MessagePOJO("this is a message", "josh");
         //writeMessage(newMessage);
         //System.out.println(userExists("newName", "newPass"));
+        //mainControllerBLL.encryptPass("testPass");
 
     }
 
