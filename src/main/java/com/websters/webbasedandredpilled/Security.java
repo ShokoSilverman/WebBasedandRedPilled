@@ -37,7 +37,9 @@ public class Security extends WebSecurityConfigurerAdapter {
         UserDetails newAdmin = User.withUsername("admin")
                 .password(passEncode().encode("passWord"))
                 .roles("ADMIN").build();
-        memAuth.createUser(newAdmin);
+        auth.inMemoryAuthentication().withUser(newAdmin);
+        //memAuth.createUser(newAdmin);
+        System.out.println("Other user exists " + memAuth.userExists("admin"));
 
 //        ArrayList<UsersToAdd> userList = (ArrayList<UsersToAdd>) userRepo.findAll();
 //        for(UsersToAdd user : userList){
@@ -60,6 +62,13 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .antMatchers("/anyone/**").permitAll()
                 .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/admin/**").hasRole("ADMIN")
+                .and().formLogin().loginPage("/registration.html")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/chatRoom.html", true)
+                .and()
+                .logout().logoutUrl("/logout")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .csrf().disable()
