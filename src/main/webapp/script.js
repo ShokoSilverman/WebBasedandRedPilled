@@ -81,6 +81,33 @@ errorChecker = () => {
 
 loginOnClick = () => {
     //TODO Verify input and start session if input is good and switch to the chatroom
+    function userLogin() {
+        //console.log("Login Event Hit");
+        //console.log("Username = " + document.getElementById("usernameLogin").valueOf());
+        let username = document.getElementById("usernameLogin").valueOf();
+
+        const request = new XMLHttpRequest();
+        request.open("GET", "http://localhost:80/anyone/login");
+        request.send();
+        request.onload = () => {
+            //alert(request.responseText)
+            location.href = request.responseText;
+        }
+    }
+}
+
+function userLogin() {
+    //console.log("Login Event Hit");
+    //console.log("Username = " + document.getElementById("usernameLogin").valueOf());
+    let username = document.getElementById("usernameLogin").valueOf();
+
+    const request = new XMLHttpRequest();
+    request.open("GET", "http://localhost:80/anyone/login");
+    request.send();
+    request.onload = () => {
+        //alert(request.responseText)
+        location.href = request.responseText;
+    }
 }
 
 registerOnClick = () => {

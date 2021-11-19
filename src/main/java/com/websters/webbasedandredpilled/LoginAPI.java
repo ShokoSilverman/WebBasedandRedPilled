@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/anyone")
 public class LoginAPI {
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(){
         //System.out.println("Login API Hit");
         return "http://localhost:80/chatRoom.html";

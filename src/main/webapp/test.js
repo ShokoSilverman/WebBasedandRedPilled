@@ -15,8 +15,9 @@ function userLogin() {
     //console.log("Login Event Hit");
     //console.log("Username = " + document.getElementById("usernameLogin").valueOf());
     let username = document.getElementById("usernameLogin").valueOf();
+
     const request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:80/anyone/login");
+    request.open("GET", "http://localhost:80/anyone/login");
     request.send();
     request.onload = () => {
         //alert(request.responseText)
@@ -31,6 +32,6 @@ function userLogout() {
     request.send();
     request.onload = () => {
         //alert(request.responseText)
-        location.href = request.responseText;
+        //location.href = request.responseText;
     }
 }

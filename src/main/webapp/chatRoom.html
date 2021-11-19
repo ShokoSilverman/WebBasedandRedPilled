@@ -156,6 +156,18 @@
             chatWindow.innerHTML += `<p>${msg}</p>`;
             window.scrollTo(0, document.body.scrollHeight);
         });
+
+
+        function userLogout() {
+            //console.log("Logout Event Hit");
+            const request = new XMLHttpRequest();
+            request.open("GET", "http://localhost:80/anyone/logout");
+            request.send();
+            request.onload = () => {
+                //alert(request.responseText)
+                location.href = request.responseText;
+            }
+        }
     </script>
 </body>
 <!--testing this branch thing-->
