@@ -23,7 +23,7 @@ const confirmRegex = document.getElementById('confirmRegex');
 let registerEmailError = true;
 let registerUsernameError = true;
 let registerPasswordError = true;
-let confirmPasswordError = true;
+let passwordConfirmError = true;
 let hasErrors = true;
 
 emailChecker = () => {
@@ -110,6 +110,26 @@ function userLogin() {
     }
 }
 
+const addUser = () => {
+    console.log('adding User');
+    let email = document.querySelector("#email").value;
+    let username = document.querySelector("#usernameRegister").value;
+    let password = document.querySelector("#passwordRegister").value;
+    let securityRoles = ["USER"];
+    let isActive = true;
+    let newUser = JSON.stringify({username, password, email, securityRoles, isActive});
+    console.log(newUser);
+    const request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:80/registration/createUser");
+    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    request.send(newUser);
+    request.onload = () =>{
+        alert(request.responseText)
+        console.log('user added')
+
+    }
+}
+
 registerOnClick = () => {
     emailChecker();
     usernameChecker();
@@ -118,5 +138,8 @@ registerOnClick = () => {
     errorChecker();
     if(!hasErrors) {
         //TODO add to database, start session and port over to chatroom
+        addUser();
+        location.href = 'http://localhost:81/';
+
     }
 }
