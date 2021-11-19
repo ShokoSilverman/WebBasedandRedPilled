@@ -23,32 +23,33 @@ ul {
     border: 2px solid #a7a4a0;
 }
 
-.password_box {
-    -webkit-text-security: disc;
-}
-
-#chadRoomTitle {
-    text-align: center;
-    font-size: 100px;
-    border-bottom: solid 10px #F49F0A;
-}
-
-#login {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 60vh;
-}
-
 #header {
     position: absolute;
     display: flex;
-    justify-content: end;
     left: 0;
     right: 0;
     top: 0;
     height: 40px;
+    line-height: 40px;
+    justify-content: center;
+    font-size: x-large;
     background-color: #1b1f21;
+}
+
+#logoutButton {
+    position: absolute;
+    right: 0;
+    width: 5%;
+    height: 30px;
+    line-height: 30px;
+    font-size: large;
+    border: solid 5px #1b1f21;
+    background-color: #1b1f21;
+    color:#D3D0CB;
+}
+
+#logoutButton.btn:hover {
+    color:#F49F0A;
 }
 
 #mainContent {
@@ -62,7 +63,20 @@ ul {
     left: 0;
     right: 225px;
     bottom: 60px;
-    padding: 20px
+    padding: 20px;
+    overflow-y: auto;
+}
+
+#chatWindow::-webkit-scrollbar {
+    background-color: #393E41;
+    border-radius: 5px;
+    width: 20px
+}
+
+#chatWindow::-webkit-scrollbar-thumb {
+    background-color: #2b2f31;
+    border-radius: 10px;
+    border: solid 5px #393E41;
 }
 
 #userList {

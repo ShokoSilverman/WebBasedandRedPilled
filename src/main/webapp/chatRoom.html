@@ -2,124 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-<!--    <link href='style.css' rel='stylesheet'>-->
-<!--    <link rel="stylesheet" type="text/css" href="test.css">-->
-    <style>
-        html {
-            background-color: #2b2f31;
-            color: #D3D0CB;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        ul {
-            list-style-type: none;
-        }
-
-        .btn {
-            border: 2px solid #D3D0CB;
-            border-radius: 2px;
-            text-align: center;
-            color: #393E41;
-            background-color: #D3D0CB;
-            user-select: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #a7a4a0;
-            border: 2px solid #a7a4a0;
-        }
-
-        .password_box {
-            -webkit-text-security: disc;
-        }
-
-        #chadRoomTitle {
-            text-align: center;
-            font-size: 100px;
-            border-bottom: solid 10px #F49F0A;
-        }
-
-        #login {
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            min-height: 60vh;
-        }
-
-        #header {
-            position: absolute;
-            display: flex;
-            justify-content: end;
-            left: 0;
-            right: 0;
-            top: 0;
-            height: 40px;
-            background-color: #1b1f21;
-        }
-
-        #mainContent {
-            display: flex;
-        }
-
-        #chatWindow {
-            position: absolute;
-            background-color: #393E41;
-            top: 40px;
-            left: 0;
-            right: 225px;
-            bottom: 60px;
-            padding: 20px
-        }
-
-        #userList {
-            position: absolute;
-            background-color: #2b2f31;
-            width: 200px;
-            top: 40px;
-            right: 0;
-            bottom: 60px;
-            padding: 10px;
-        }
-
-        #messageBox {
-            display: flex;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            border: 10px solid #393E41;
-            background-color: #393E41;
-        }
-
-        #message {
-            flex-grow: 1;
-            font-size: large;
-            resize: none;
-            margin-right: 10px;
-            background-color: #2b2f31;
-            color: #D3D0CB;
-            border: 1px solid #2b2f31;
-        }
-
-        #messageBtn {
-            width: 5%;
-            line-height: 200%;
-            border-radius: 0%;
-        }
-    </style>
+    <title>ChadRoom</title>    
+    <link href='style.css' rel='stylesheet'>
 </head>
 <body>
-<h1>test</h1>
     <div id='header'>
-        <div class='btn'>Logout</div>
+        <div onclick="summonChad()" style='user-select: none; cursor: pointer;'>CHAD</div><div>ROOM</div>
+        <div class='btn' id='logoutButton'>Logout</div>
     </div>
     <div id='mainContent'>
         <div id='chatWindow'>
-            <p>
-                "Hey"
-            </p>
+            <div></div>
         </div>
         <div id='userList'>
             <p>
@@ -132,31 +25,8 @@
     </div>
     <div id='messageBox'>
         <textarea id='message' rows='1'></textarea>
-        <div class='btn' id='messageBtn'>Enter</div>
+        <div class='btn' id='messageBtn'>Send</div>
     </div>
-    <script src="/socket.io/socket.io.js"></script>
-
-    <script>
-        var socket = io();
-
-        var chatWindow = document.getElementById('chatWindow');
-        var click = document.getElementById('messageBtn');
-        var message = document.getElementById('message');
-
-
-        document.getElementById("messageBtn").addEventListener("click", function(e) {
-            e.preventDefault();
-                if (message.value) {
-                    socket.emit('chat message', message.value);
-                    message.value = '';
-                }
-        });
-
-        socket.on('chat message', function(msg) {
-            chatWindow.innerHTML += `<p>${msg}</p>`;
-            window.scrollTo(0, document.body.scrollHeight);
-        });
-    </script>
+    <script src='script.js'></script>
 </body>
-
 </html>

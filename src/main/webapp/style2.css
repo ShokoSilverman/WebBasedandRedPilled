@@ -1,0 +1,72 @@
+html {
+    background-color: #2b2f31;
+    color: #D3D0CB;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 26pt;
+    }
+
+ul {
+    list-style-type: none;  
+    width: 20%;
+}
+
+li {
+    width: 100%;
+    text-align: center;
+}
+
+textarea {
+    resize: none;
+    width: 400px;
+    font-size: 26pt;
+    overflow: hidden;
+}
+
+.btn {
+    border: 2px solid #D3D0CB;
+    border-radius: 2px;
+    text-align: center;
+    color: #393E41;
+    background-color: #D3D0CB;
+    user-select: none;
+    cursor: pointer;
+    width: 400px;
+}
+
+.btn:hover {
+    background-color: #a7a4a0;
+    border: 2px solid #a7a4a0;
+}
+
+.password_box {
+    -webkit-text-security: disc;
+}
+
+#chadRoomTitle {
+    text-align: center;
+    font-size: 98pt;
+    border-bottom: solid 10px #F49F0A;
+}
+
+#login {
+    justify-content: space-around;
+}
+
+#regexRegister {
+    color: #FF4433;
+    font-style: italic;
+    font-size: medium;
+    width: 390px;
+    position: absolute;
+    left: 66%;
+    
+}
+
+#divider {
+    background-color: #393E41;
+    position: absolute;
+    left: 50%;
+    width: 10px;
+    top: 200px;
+    height: 75%;   
+}
