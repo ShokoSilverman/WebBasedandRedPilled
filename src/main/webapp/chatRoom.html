@@ -3,7 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <title>ChadRoom</title>    
-    <link href='style.css' rel='stylesheet'>
+    <style>
+        html {
+        background-color: #2b2f31;
+        color: #D3D0CB;
+        font-family: 'Courier New', Courier, monospace;
+        }
+        
+        ul {
+            list-style-type: none;  
+        }
+        
+        .btn {
+            border: 2px solid #D3D0CB;
+            border-radius: 2px;
+            text-align: center;
+            color: #393E41;
+            background-color: #D3D0CB;
+            user-select: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #a7a4a0;
+            border: 2px solid #a7a4a0;
+        }
+        
+        #header {
+            position: absolute;
+            display: flex;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 40px;
+            line-height: 40px;
+            justify-content: center;
+            font-size: x-large;
+            background-color: #1b1f21;
+        }
+        
+        #logoutButton {
+            position: absolute;
+            right: 0;
+            width: 5%;
+            height: 30px;
+            line-height: 30px;
+            font-size: large;
+            border: solid 5px #1b1f21;
+            background-color: #1b1f21;
+            color:#D3D0CB;
+        }
+        
+        #logoutButton.btn:hover {
+            color:#F49F0A;
+        }
+        
+        #mainContent {
+            display: flex;
+        }
+        
+        #chatWindow {
+            position: absolute;
+            background-color: #393E41;
+            top: 40px;
+            left: 0;
+            right: 225px;
+            bottom: 60px;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        #chatWindow::-webkit-scrollbar {
+            background-color: #393E41;
+            border-radius: 5px;
+            width: 20px
+        }
+        
+        #chatWindow::-webkit-scrollbar-thumb {
+            background-color: #2b2f31;
+            border-radius: 10px;
+            border: solid 5px #393E41;
+        }
+        
+        #userList {
+            position: absolute;
+            background-color: #2b2f31;  
+            width: 200px;
+            top: 40px;
+            right: 0;  
+            bottom: 60px;
+            padding: 10px;
+        }
+        
+        #messageBox {
+            display: flex;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border: 10px solid #393E41;
+            background-color: #393E41;
+        }
+        
+        #message {
+            flex-grow: 1;
+            font-size: large;
+            resize: none;
+            margin-right: 10px;
+            background-color: #2b2f31;
+            color: #D3D0CB;
+            border: 1px solid #2b2f31;
+        }
+        
+        #messageBtn {
+            width: 5%;
+            line-height: 200%;
+            border-radius: 0%;
+        }
+    </style>
 </head>
 <body>
     <div id='header'>
@@ -27,6 +144,33 @@
         <textarea id='message' rows='1'></textarea>
         <div class='btn' id='messageBtn'>Send</div>
     </div>
-    <script src='script.js'></script>
+    <!-- <script src='script.js'></script> -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        summonChad = () => {
+            //window.open("https://static.wikia.nocookie.net/be-like-bro/images/c/cf/Chad.jpg/revision/latest/top-crop/width/360/height/450?cb=20180403173350", '_blank');
+            window.open("https://i.kym-cdn.com/photos/images/original/001/318/180/0eb.jpg", '_blank');
+        }
+
+        var socket = io();
+
+        var chatWindow = document.getElementById('chatWindow');
+        var click = document.getElementById('messageBtn');
+        var message = document.getElementById('message');
+
+
+        document.getElementById("messageBtn").addEventListener("click", function(e) {
+            e.preventDefault();
+                if (message.value) {
+                    socket.emit('chat message', message.value);
+                    message.value = '';
+                }
+        });
+
+        socket.on('chat message', function(msg) {
+            chatWindow.innerHTML += `<p>${msg}</p>`;
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+    </script>
 </body>
 </html>
