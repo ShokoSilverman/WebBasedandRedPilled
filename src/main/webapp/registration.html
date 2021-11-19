@@ -2,26 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href='style.css' rel='stylesheet'>
+    <title>ChadRoom</title>
+    <link href='style2.css' rel='stylesheet'>
 </head>
 <body>
-    <div id='chadRoomTitle'>CHAD ROOM</div>
+    <div id='chadRoomTitle' style='display: flex; justify-content: center;'><div onclick='summonChad()' style='cursor: pointer; user-select: none;'>CHAD</div>ROOM</div>
     <div style="display: flex;" id='login'> 
-        <ul>
+        <ul id='loginForm'>
             <li>Login</li>
-            <li><textarea style="resize: none;" name="usernameLI" id="usernameLogin" rows="1" placeholder="Username"></textarea></li>
-            <li><textarea style="resize: none;" name="passwordLI" class='password_box' id="passwordLogin" rows="1" placeholder="Password"></textarea></li>
+            <li><textarea name="usernameLI" id="usernameLogin" rows="1" placeholder="Username"></textarea></li>
+            <li><textarea name="passwordLI" class='password_box' id="passwordLogin" rows="1" placeholder="Password"></textarea></li>
             <li><div class='btn' id='loginButton'>Login</div></li>
         </ul>
-        <ul>
+        <ul id='registerForm'>
             <li>Register</li>
-            <li><textarea style="resize: none;" name="email" id="email" rows="1" placeholder="Email"></textarea></li>
-            <li><textarea style="resize: none;" name="usernameRU" id="usernameRegister" rows="1" placeholder="Username"></textarea></li>
-            <li><textarea style="resize: none;" name="passwordRU" class='password_box' id="passwordRegister" rows="1" placeholder="Password"></textarea></li>
-            <li><textarea style="resize: none;" name="passwordConfirm" class='password_box' id="passwordConfirm" rows="1" placeholder="Re-Enter Password"></textarea></li>
-            <li><div class='btn' id='registerButton'>Register</div></li>
+            <li><textarea name="email" id="email" rows="1" placeholder="Email" onfocusout='emailChecker()'></textarea></li>
+            <li><textarea name="usernameRU" id="usernameRegister" rows="1" placeholder="Username" onfocusout='usernameChecker()'></textarea></li>
+            <li><textarea name="passwordRU" class='password_box' id="passwordRegister" rows="1" placeholder="Password" onfocusout='passwordChecker()'></textarea></li>
+            <li><textarea name="passwordConfirm" class='password_box' id="passwordConfirm" rows="1" placeholder="Re-Enter Password" onfocusout='confirmChecker()'></textarea></li>
+            <li><div class='btn' id='registerButton' onclick="registerOnClick()">Register</div></li>
         </ul>
     </div>
+    <div id='regexRegister'>
+    <div id='emailRegex'></div>
+    <div id='usernameRegex'></div>
+    <div id='passwordRegex'></div>
+    <div id='confirmRegex'></div>
+    </div>
+    <div id='divider'></div>
+    <script src='script.js'></script>
 </body>
 </html>
