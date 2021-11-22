@@ -39,7 +39,7 @@ emailChecker = () => {
 usernameChecker = () => {
     registerUsernameError = true;
     if(!username_pattern.test(usernameRegister.value)) {
-        usernameRegex.innerHTML = 'Valid names must be between 4 and 32 characters and only contain alphanumerics and underscores, as well as start with a letter <br/><br/>';
+        usernameRegex.innerHTML = 'Valid names must be between 5 and 32 characters and only contain alphanumerics and underscores, as well as start with a letter <br/><br/>';
     } else {
         usernameRegex.innerHTML = '';
         registerUsernameError = false;
