@@ -170,6 +170,7 @@ ul {
         socket.on('chat message', function(msg) {
             chatWindow.innerHTML += `<p>${msg}</p>`;
             window.scrollTo(0, document.body.scrollHeight);
+            //hit api here
         });
 
 

@@ -124,7 +124,13 @@ const addUser = () => {
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     request.send(newUser);
     request.onload = () =>{
-        alert(request.responseText)
+        //alert(request.responseText)
+        if (request.responseText === "Username or Email already exists!"){
+            usernameRegex.innerHTML = request.responseText;
+        }else{
+            location.href = 'http://localhost:81/';
+        }
+
         console.log('user added')
 
     }
@@ -139,7 +145,5 @@ registerOnClick = () => {
     if(!hasErrors) {
         //TODO add to database, start session and port over to chatroom
         addUser();
-        location.href = 'http://localhost:81/';
-
     }
 }
