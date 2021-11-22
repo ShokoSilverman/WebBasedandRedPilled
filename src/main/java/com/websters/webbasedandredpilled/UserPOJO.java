@@ -15,7 +15,7 @@ import java.util.List;
 
 @Document
 @Data//creates getters and setters for everything in here
-public class UsersToAdd implements UserDetails {
+public class UserPOJO implements UserDetails {
 //    @Setter
 //    @Getter
 //    @Id
@@ -27,7 +27,7 @@ public class UsersToAdd implements UserDetails {
     private String[] securityRoles;
     private boolean isActive;
 
-    public UsersToAdd(String username, String password, String email, String[] securityRoles, boolean isActive) {
+    public UserPOJO(String username, String password, String email, String[] securityRoles, boolean isActive) {
         this.username = username;
         this.password = password;
         this.email = email;

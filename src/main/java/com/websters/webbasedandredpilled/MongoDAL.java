@@ -7,7 +7,6 @@ import com.websters.webbasedandredpilled.Repos.MessageRepo;
 import com.websters.webbasedandredpilled.Repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.websters.webbasedandredpilled.UsersToAdd;
 
 import javax.annotation.PostConstruct;
 import javax.management.openmbean.KeyAlreadyExistsException;
@@ -36,7 +35,7 @@ public class MongoDAL {
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String startTime = LocalDateTime.now().format(myFormatObj);
         System.out.println("start time " + startTime);
-        UsersToAdd testUser = new UsersToAdd("admin", "securePass", "email@gmail.com", new String[]{"USER", "ADMIN"}, true);
+        UserPOJO testUser = new UserPOJO("admin", "securePass", "email@gmail.com", new String[]{"USER", "ADMIN"}, true);
         //writeUser(testUser);//use this to test and turn on db
         ChatLog newChatLog = new ChatLog("newUser", new MessagePOJO[]{});
         //writeChatLog(newChatLog);
@@ -53,7 +52,7 @@ public class MongoDAL {
 
     }
 
-    public void writeUser(UsersToAdd newUser){
+    public void writeUser(UserPOJO newUser){
         //test values for db connection
         if (userRepo.findById(newUser.getEmail()).isPresent()){
             throw new KeyAlreadyExistsException("email already exists!");//if the email exists already, get mad
@@ -86,9 +85,9 @@ public class MongoDAL {
 
     //active on off
     public String setIsActive(String email, boolean setActive){ //true = is active | false = not active //takes in the email because it is the ID
-        Optional<UsersToAdd> userToAddOpt = userRepo.findById(email);
+        Optional<UserPOJO> userToAddOpt = userRepo.findById(email);
         if (userToAddOpt.isPresent()){
-            UsersToAdd userToAdd = userToAddOpt.get(); //only grabs if it exists
+            UserPOJO userToAdd = userToAddOpt.get(); //only grabs if it exists
             userToAdd.setActive(setActive);
             userRepo.save(userToAdd);
             return userToAdd.getUsername() + " activity set to: " + userToAdd.isActive();
@@ -98,12 +97,12 @@ public class MongoDAL {
     }
 
     public String newUserName(String email, String passWord, String newUserName){
-        Optional<UsersToAdd> userToAddOpt = userRepo.findById(email);
+        Optional<UserPOJO> userToAddOpt = userRepo.findById(email);
         if (userRepo.findByUsernameEquals(newUserName).size() > 0){
             throw new KeyAlreadyExistsException("User already exists");//if the name exists already get mad
         }
         if (userToAddOpt.isPresent()){ //check if user exists
-            UsersToAdd userToAdd = userToAddOpt.get();
+            UserPOJO userToAdd = userToAddOpt.get();
             if (passWord.equals(userToAdd.getPassword())){//check if incorrect password
                 userToAdd.setUsername(newUserName);
                 userRepo.save(userToAdd);
@@ -117,9 +116,9 @@ public class MongoDAL {
     }
 
     public String newPassWord(String email, String oldPassWord, String newPassWord){
-        Optional<UsersToAdd> userToAddOpt = userRepo.findById(email);
+        Optional<UserPOJO> userToAddOpt = userRepo.findById(email);
         if (userToAddOpt.isPresent()){ //check if user exists
-            UsersToAdd userToAdd = userToAddOpt.get();
+            UserPOJO userToAdd = userToAddOpt.get();
             if (oldPassWord.equals(userToAdd.getPassword())){//check if incorrect password
                 userToAdd.setPassword(newPassWord);
                 userRepo.save(userToAdd);
@@ -134,17 +133,17 @@ public class MongoDAL {
 
     public void userNameList(){
         System.out.println("getting lists of names");
-        List<UsersToAdd> userNameList = userRepo.findByUsernameEquals("newName");
-        for(UsersToAdd usersToAdd: userNameList){
-            System.out.println(usersToAdd.getUsername());
+        List<UserPOJO> userNameList = userRepo.findByUsernameEquals("newName");
+        for(UserPOJO userPOJO : userNameList){
+            System.out.println(userPOJO.getUsername());
         }
     }
 
     public boolean userExists(String userName, String password){
-        List<UsersToAdd> usersToAddList = userRepo.findByUsernameEquals(userName);
-        if (usersToAddList.get(0) != null){
+        List<UserPOJO> userPOJOList = userRepo.findByUsernameEquals(userName);
+        if (userPOJOList.get(0) != null){
             //throw an custom error if password incorrect
-            return password.equals(usersToAddList.get(0).getPassword());//returns true if password matches //false if incorrect password
+            return password.equals(userPOJOList.get(0).getPassword());//returns true if password matches //false if incorrect password
         }else{
             return false;//false if user does not exist
             //throw custom error if the user does not exist
