@@ -1,16 +1,26 @@
 package com.websters.webbasedandredpilled;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/anyone")
 public class AnyoneAPI {
+    @Autowired
+    private MainControllerBLL mainControllerBLL;
+
     @RequestMapping(path = "/index", method= RequestMethod.GET)
     public String speak() {
         return "this reached anyone";
+    }
+
+    @RequestMapping(path="/logMessage", method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(code= HttpStatus.CREATED)
+    public void logMessage(@RequestBody MessagePOJO message){
+        message.setTimeSent();
+        mainControllerBLL.writeError(message);
     }
 }

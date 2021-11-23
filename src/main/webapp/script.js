@@ -106,7 +106,9 @@ function userLogin() {
     request.send();
     request.onload = () => {
         //alert(request.responseText)
-        location.href = request.responseText;
+        //location.href = request.responseText;
+        //location.href = 'http://localhost:81/';
+        location.href = 'http://localhost:81/';
     }
 }
 
@@ -125,6 +127,7 @@ const addUser = () => {
     request.send(newUser);
     request.onload = () =>{
         //alert(request.responseText)
+
         if (request.responseText === "Username or Email already exists!"){
             usernameRegex.innerHTML = request.responseText;
         }else{

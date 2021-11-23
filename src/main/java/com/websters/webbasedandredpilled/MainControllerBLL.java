@@ -31,8 +31,7 @@ public class MainControllerBLL {
 
     }
 
-    public void writeError(String messageContent, String sentBy){
-        MessagePOJO message = new MessagePOJO(messageContent, sentBy);
+    public void writeError(MessagePOJO message){
         mongo.writeMessage(message);
     }
 
