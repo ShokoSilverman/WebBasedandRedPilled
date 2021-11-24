@@ -27,9 +27,11 @@ public class LoginAPI {
             HttpSession session = request.getSession();
             System.out.println("Session = " + session);
             Cookie login = new Cookie("login", "true");
+            Cookie currentUser = new Cookie("username", username);
             //1 Hour Expiration
             login.setMaxAge(60*60);
             response.addCookie(login);
+            response.addCookie(currentUser);
         }else{
             //TODO throw some error
         }
