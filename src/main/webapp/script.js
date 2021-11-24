@@ -84,7 +84,7 @@ function userLogin() {
     console.log("Username = " + document.getElementById("usernameLogin").value);
     let username = document.getElementById("usernameLogin").value;
     let password = document.getElementById("passwordLogin").value;
-    let params = "?username=" + username + "&password=" + password
+    let params = "?username=" + username + "&password=" + password;
     const request = new XMLHttpRequest();
     request.open("POST", "http://localhost:80/anyone/login" + params, true);
     //alert(myString);
