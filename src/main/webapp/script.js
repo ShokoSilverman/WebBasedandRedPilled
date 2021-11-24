@@ -80,20 +80,20 @@ errorChecker = () => {
 }
 
 function userLogin() {
-    console.log("Login Event Hit");
-    console.log("Username = " + document.getElementById("usernameLogin").value);
-    let username = document.getElementById("usernameLogin").value;
-    let password = document.getElementById("passwordLogin").value;
-    let params = "?username=" + username + "&password=" + password;
+    //console.log("Login Event Hit");
+    //console.log("Username = " + document.getElementById("usernameLogin").valueOf());
+    let username = document.getElementById("usernameLogin").valueOf();
+
     const request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:80/anyone/login" + params, true);
-    //alert(myString);
+    request.open("GET", "http://localhost:80/anyone/login");
     request.send();
-    console.log(params);
     request.onload = () => {
         //Redirects to URL returned by API
         //console.log(request.responseText)
-        location.href = request.responseText;
+        //location.href = request.responseText;
+        //alert(request.responseText)
+        //location.href = 'http://localhost:81/';
+        location.href = 'http://localhost:81/';
     }
 }
 
@@ -111,7 +111,14 @@ const addUser = () => {
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     request.send(newUser);
     request.onload = () =>{
-        alert(request.responseText)
+        //alert(request.responseText)
+
+        if (request.responseText === "Username or Email already exists!"){
+            usernameRegex.innerHTML = request.responseText;
+        }else{
+            location.href = 'http://localhost:81/';
+        }
+
         console.log('user added')
 
     }

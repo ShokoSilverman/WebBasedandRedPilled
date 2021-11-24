@@ -25,7 +25,7 @@ public class MainControllerBLL {
     public ArrayList<ErrorLog> errorList = new ArrayList<>();
 
 
-    public String encryptPass(String password) {
+    public String encryptPass(String password){
         String pw_hash = BCrypt.hashpw(password, BCrypt.gensalt());
         System.out.println("salted and hashpilled");
         return pw_hash;
@@ -46,12 +46,19 @@ public class MainControllerBLL {
     }
 
 
+    public void writeError(MessagePOJO message){
+        mongo.writeMessage(message);
+    }
+
     //if (BCrypt.checkpw(candidate_password, stored_hash))
     //            System.out.println("It matches");
     //        else
     //            System.out.println("It does not match");
     //        System.out.println(pw_hash);
     //checks the password
+
+
+
 
 
 }

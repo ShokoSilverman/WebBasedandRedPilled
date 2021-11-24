@@ -27,4 +27,8 @@ public class MessagePOJO {
 
     public MessagePOJO(){}
 
+    public void setTimeSent() {
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        this.timeSent = LocalDateTime.now().format(myFormatObj);
+    }
 }

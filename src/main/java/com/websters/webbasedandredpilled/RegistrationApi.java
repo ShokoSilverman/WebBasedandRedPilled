@@ -24,7 +24,8 @@ public class RegistrationApi {
         try{
             mongoDAL.writeUser(newUser);
         }catch (KeyAlreadyExistsException keyE){
-            keyE.printStackTrace();
+            //keyE.printStackTrace();
+            return "Username or Email already exists!";
         }
         return newUser.getUsername() + " added!";
     }
