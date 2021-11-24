@@ -93,7 +93,16 @@ function userLogin() {
     request.onload = () => {
         //Redirects to URL returned by API
         //console.log(request.responseText)
-        location.href = request.responseText;
+        //alert(request.responseText);
+        //location.href = request.responseText;
+        if (request.responseText == 'true'){
+            //alert(request.responseText);
+            location.href = 'http://localhost:81/';
+        }else{
+            document.getElementById("usernameLogin").innerHTML='';
+            document.getElementById("passwordLogin").innerHTML='';
+            alert('Username or password incorrect! >:(');
+        }
     }
 }
 
