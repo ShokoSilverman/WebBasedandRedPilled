@@ -19,7 +19,7 @@ public class LoginAPI {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseStatus(code= HttpStatus.CREATED)
-    public String login(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, HttpServletRequest request, HttpServletResponse response){
+    public boolean login(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, HttpServletRequest request, HttpServletResponse response){
         System.out.println("Login API Hit");
         if(bll.verifyUserCredentials(username, password)){
             //TODO Start Session and make Cookie
@@ -31,10 +31,12 @@ public class LoginAPI {
             login.setMaxAge(60*60);
             response.addCookie(login);
         }else{
-            //TODO throw some error
+            //return "http://localhost:80/registration.html";
+            return false;
         }
         //System.out.println("Login API Hit");
-        return "http://localhost:81/";
+        //return "http://localhost:81/";
+        return true;
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
