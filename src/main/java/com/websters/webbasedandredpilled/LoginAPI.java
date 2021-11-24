@@ -34,7 +34,7 @@ public class LoginAPI {
             //TODO throw some error
         }
         //System.out.println("Login API Hit");
-        return "http://localhost:80/chatRoom.html";
+        return "http://localhost:81/";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
