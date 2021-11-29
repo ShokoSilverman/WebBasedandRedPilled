@@ -23,7 +23,7 @@ public class AnyoneAPI {
                     System.out.println("Enter action = 1: IllegalArgumentException");
                     throw  new IllegalArgumentException("My Error IllegalArgumentException. Action is 1");
                 case "2":
-                    System.out.println("Enter action = 2: RuntimeException");
+//                    System.out.println("Enter action = 2: RuntimeException");
                     throw new RuntimeException("My error RuntimeException. Action is 2");
                 case "3":
                     System.out.println("Enter action = 3: IllegalCallerException");
