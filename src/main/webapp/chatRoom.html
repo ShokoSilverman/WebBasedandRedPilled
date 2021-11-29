@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Chadroom</title>
 <!--    <link href='style.css' rel='stylesheet'>-->
 <!--    <link rel="stylesheet" type="text/css" href="test.css">-->
     <style>
@@ -31,32 +31,33 @@
             border: 2px solid #a7a4a0;
         }
 
-        .password_box {
-            -webkit-text-security: disc;
-        }
-
-        #chadRoomTitle {
-            text-align: center;
-            font-size: 100px;
-            border-bottom: solid 10px #F49F0A;
-        }
-
-        #login {
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            min-height: 60vh;
-        }
-
         #header {
             position: absolute;
             display: flex;
-            justify-content: end;
             left: 0;
             right: 0;
             top: 0;
             height: 40px;
+            line-height: 40px;
+            justify-content: center;
+            font-size: x-large;
             background-color: #1b1f21;
+        }
+
+        #logoutButton {
+            position: absolute;
+            right: 0;
+            width: 5%;
+            height: 30px;
+            line-height: 30px;
+            font-size: large;
+            border: solid 5px #1b1f21;
+            background-color: #1b1f21;
+            color:#D3D0CB;
+        }
+
+        #logoutButton.btn:hover {
+            color:#F49F0A;
         }
 
         #mainContent {
@@ -70,7 +71,20 @@
             left: 0;
             right: 225px;
             bottom: 60px;
-            padding: 20px
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        #chatWindow::-webkit-scrollbar {
+            background-color: #393E41;
+            border-radius: 5px;
+            width: 20px
+        }
+
+        #chatWindow::-webkit-scrollbar-thumb {
+            background-color: #2b2f31;
+            border-radius: 10px;
+            border: solid 5px #393E41;
         }
 
         #userList {
@@ -113,7 +127,8 @@
 <body>
 <h1>test</h1>
     <div id='header'>
-        <div class='btn' onclick="userLogout()">Logout</div>
+        <div onclick="summonChad()" style='user-select: none; cursor: pointer;'>CHAD</div><div>ROOM</div>
+        <div class='btn' id='logoutButton' onclick="userLogout()">Logout</div>
     </div>
     <div id='mainContent'>
         <div id='chatWindow'>
@@ -137,6 +152,11 @@
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
+        summonChad = () => {
+            //window.open("https://static.wikia.nocookie.net/be-like-bro/images/c/cf/Chad.jpg/revision/latest/top-crop/width/360/height/450?cb=20180403173350", '_blank');
+            window.open("https://i.kym-cdn.com/photos/images/original/001/318/180/0eb.jpg", '_blank');
+        }
+
         var socket = io();
 
         var chatWindow = document.getElementById('chatWindow');

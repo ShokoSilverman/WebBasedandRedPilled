@@ -4,10 +4,10 @@ html {
     font-family: 'Courier New', Courier, monospace;
     font-size: x-large;
     overflow-y: hidden;
-    }
+}
 
 ul {
-    list-style-type: none;  
+    list-style-type: none;
     width: 20%;
 }
 
@@ -42,31 +42,14 @@ input {
     border: 2px solid #a7a4a0;
 }
 
-#chadRoomTitle {
+#ChadroomHeader {
     text-align: center;
     font-size: 78pt;
     border-bottom: solid 10px #F49F0A;
+    display: flex;
+    justify-content: center
 }
 
-#login {
-    justify-content: space-around;
-}
-
-#regexRegister {
-    color: #FF4433;
-    font-style: italic;
-    font-size: medium;
-    width: 390px;
-    position: absolute;
-    left: 66%;
-    
-}
-
-#divider {
-    background-color: #393E41;
-    position: absolute;
-    left: 50%;
-    width: 10px;
-    top: 200px;
-    height: 75%;
+#activateUserBtn {
+    display: flex;
 }
