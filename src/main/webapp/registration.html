@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ChadRoom</title>
+    <title>Chadroom</title>
     <link href='style2.css' rel='stylesheet'>
 </head>
 <body>
@@ -10,16 +10,16 @@
     <div style="display: flex;" id='login'> 
         <ul id='loginForm'>
             <li>Login</li>
-            <li><textarea name="usernameLI" id="usernameLogin" rows="1" placeholder="Username"></textarea></li>
-            <li><textarea name="passwordLI" class='password_box' id="passwordLogin" rows="1" placeholder="Password"></textarea></li>
+            <li><input type="text" name="usernameLI" id="usernameLogin" placeholder="Username"></li>
+            <li><input type="password" name="passwordLI" id="passwordLogin" placeholder="Password"></li>
             <li><div class='btn' id='loginButton' onclick="userLogin()">Login</div></li>
         </ul>
         <ul id='registerForm'>
             <li>Register</li>
-            <li><textarea name="email" id="email" rows="1" placeholder="Email" onfocusout='emailChecker()'></textarea></li>
-            <li><textarea name="usernameRU" id="usernameRegister" rows="1" placeholder="Username" onfocusout='usernameChecker()'></textarea></li>
-            <li><textarea name="passwordRU" class='password_box' id="passwordRegister" rows="1" placeholder="Password" onfocusout='passwordChecker()'></textarea></li>
-            <li><textarea name="passwordConfirm" class='password_box' id="passwordConfirm" rows="1" placeholder="Re-Enter Password" onfocusout='confirmChecker()'></textarea></li>
+            <li><input type="text" name="email" id="email" placeholder="Email" onfocusout='emailChecker()'></li>
+            <li><input type="text" name="usernameRU" id="usernameRegister" placeholder="Username" onfocusout='usernameChecker()'></li>
+            <li><input type="password" name="passwordRU" class='password_box' id="passwordRegister" placeholder="Password" onfocusout='passwordChecker()'></li>
+            <li><input type="password" name="passwordConfirm" class='password_box' id="passwordConfirm" placeholder="Re-Enter Password" onfocusout='confirmChecker()'></li>
             <li><div class='btn' id='registerButton' onclick="registerOnClick()">Register</div></li>
         </ul>
     </div>

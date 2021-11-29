@@ -7,127 +7,112 @@
 <!--    <link rel="stylesheet" type="text/css" href="test.css">-->
     <style>
         html {
-background-color: #2b2f31;
-color: #D3D0CB;
-font-family: 'Courier New', Courier, monospace;
-}
+            background-color: #2b2f31;
+            color: #D3D0CB;
+            font-family: 'Courier New', Courier, monospace;
+        }
 
-ul {
-    list-style-type: none;  
-}
+        ul {
+            list-style-type: none;
+        }
 
-.btn {
-    border: 2px solid #D3D0CB;
-    border-radius: 2px;
-    text-align: center;
-    color: #393E41;
-    background-color: #D3D0CB;
-    user-select: none;
-    cursor: pointer;
-}
+        .btn {
+            border: 2px solid #D3D0CB;
+            border-radius: 2px;
+            text-align: center;
+            color: #393E41;
+            background-color: #D3D0CB;
+            user-select: none;
+            cursor: pointer;
+        }
 
-.btn:hover {
-    background-color: #a7a4a0;
-    border: 2px solid #a7a4a0;
-}
+        .btn:hover {
+            background-color: #a7a4a0;
+            border: 2px solid #a7a4a0;
+        }
 
-#header {
-    position: absolute;
-    display: flex;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 40px;
-    line-height: 40px;
-    justify-content: center;
-    font-size: x-large;
-    background-color: #1b1f21;
-}
+        .password_box {
+            -webkit-text-security: disc;
+        }
 
-#logoutButton {
-    position: absolute;
-    right: 0;
-    width: 5%;
-    height: 30px;
-    line-height: 30px;
-    font-size: large;
-    border: solid 5px #1b1f21;
-    background-color: #1b1f21;
-    color:#D3D0CB;
-}
+        #chadRoomTitle {
+            text-align: center;
+            font-size: 100px;
+            border-bottom: solid 10px #F49F0A;
+        }
 
-#logoutButton.btn:hover {
-    color:#F49F0A;
-}
+        #login {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 60vh;
+        }
 
-#mainContent {
-    display: flex;
-}
+        #header {
+            position: absolute;
+            display: flex;
+            justify-content: end;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 40px;
+            background-color: #1b1f21;
+        }
 
-#chatWindow {
-    position: absolute;
-    background-color: #393E41;
-    top: 40px;
-    left: 0;
-    right: 225px;
-    bottom: 60px;
-    padding: 20px;
-    overflow-y: auto;
-}
+        #mainContent {
+            display: flex;
+        }
 
-#chatWindow::-webkit-scrollbar {
-    background-color: #393E41;
-    border-radius: 5px;
-    width: 20px
-}
+        #chatWindow {
+            position: absolute;
+            background-color: #393E41;
+            top: 40px;
+            left: 0;
+            right: 225px;
+            bottom: 60px;
+            padding: 20px
+        }
 
-#chatWindow::-webkit-scrollbar-thumb {
-    background-color: #2b2f31;
-    border-radius: 10px;
-    border: solid 5px #393E41;
-}
+        #userList {
+            position: absolute;
+            background-color: #2b2f31;
+            width: 200px;
+            top: 40px;
+            right: 0;
+            bottom: 60px;
+            padding: 10px;
+        }
 
-#userList {
-    position: absolute;
-    background-color: #2b2f31;  
-    width: 200px;
-    top: 40px;
-    right: 0;  
-    bottom: 60px;
-    padding: 10px;
-}
+        #messageBox {
+            display: flex;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border: 10px solid #393E41;
+            background-color: #393E41;
+        }
 
-#messageBox {
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border: 10px solid #393E41;
-    background-color: #393E41;
-}
+        #message {
+            flex-grow: 1;
+            font-size: large;
+            resize: none;
+            margin-right: 10px;
+            background-color: #2b2f31;
+            color: #D3D0CB;
+            border: 1px solid #2b2f31;
+        }
 
-#message {
-    flex-grow: 1;
-    font-size: large;
-    resize: none;
-    margin-right: 10px;
-    background-color: #2b2f31;
-    color: #D3D0CB;
-    border: 1px solid #2b2f31;
-}
-
-#messageBtn {
-    width: 5%;
-    line-height: 200%;
-    border-radius: 0%;
-}
+        #messageBtn {
+            width: 5%;
+            line-height: 200%;
+            border-radius: 0%;
+        }
     </style>
 </head>
 <body>
 <h1>test</h1>
     <div id='header'>
-        <div onclick="summonChad()" style='user-select: none; cursor: pointer;'>CHAD</div><div>ROOM</div>
         <div class='btn' onclick="userLogout()">Logout</div>
     </div>
     <div id='mainContent'>
@@ -170,14 +155,6 @@ ul {
         socket.on('chat message', function(msg) {
             chatWindow.innerHTML += `<p>${msg}</p>`;
             window.scrollTo(0, document.body.scrollHeight);
-            //hit api here
-            let messageContent = msg;
-            let sentBy = 'Simon'; //this will get replaced with a cookie
-            let newMessage = JSON.stringify({messageContent, sentBy});
-            const request = new XMLHttpRequest();
-            request.open('POST', 'http://localhost:80/anyone/logMessage');
-            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            request.send(newMessage);
         });
 
 
@@ -193,4 +170,5 @@ ul {
         }
     </script>
 </body>
+<!--testing this branch thing-->
 </html>
