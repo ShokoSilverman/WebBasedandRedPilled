@@ -1,20 +1,22 @@
 package com.websters.webbasedandredpilled;
 
+import com.websters.webbasedandredpilled.Controllers.AdminBLL;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/admin")
 public class AdminAPI {
 
+    @Autowired
+    private AdminBLL adminBLL;
+
     @PatchMapping(path = "/addAdmin")
     @ResponseStatus(code=HttpStatus.CREATED)
-    public String updateUserToAdmin(){
-        //Initialize Message to Return to User
-        //Find User to make admin
-        //Add ADMIN to their security
-        //Return Message for User.
-        return "";
+    public String updateUserToAdmin(@RequestParam(value = "username") String username){
+        return adminBLL.setAdmin(username);
     }
 
     @PatchMapping(path = "/disableUser")
