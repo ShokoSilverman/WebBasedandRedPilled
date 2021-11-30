@@ -39,7 +39,5 @@ public class ExceptionMessage {
     public void setExceptionThrowable(Throwable exceptionThrowable) {
         this.exceptionThrowable = exceptionThrowable;
     }
-
-
 }
 
