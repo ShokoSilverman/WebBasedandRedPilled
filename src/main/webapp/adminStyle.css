@@ -42,6 +42,10 @@ input {
     border: 2px solid #a7a4a0;
 }
 
+#activeCheck {
+    display: inline;
+}
+
 #ChadroomHeader {
     text-align: center;
     font-size: 78pt;
@@ -53,3 +57,4 @@ input {
 #activateUserBtn {
     display: flex;
 }
+

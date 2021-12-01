@@ -15,12 +15,11 @@
         <li><div class='btn' id='makeAdminBtn' onclick="makeUserAdmin()">Make User Admin</div></li>
     </ul>
 
-    <ul id='deactivateUser'>
+    <ul id='userActivity'>
         <li>Change User Status</li>
-        <li><input type="text" name="usernameDeactivate" id="usernameDeactivate" placeholder="Username"></li>
-        <div id="activateUserBtn">
-            <li><input type="checkbox"></li>
-        </div>
+        <li><input type="text" name="usernameActive" id="usernameActive" placeholder="Username"></li>
+            <label for="isActiveCB" id="ActiveCheck">Active<input type="checkbox" checked='true' id="isActiveCB"></label>
+        <li><div class='btn' id="saveChangeActivity" onclick="updateUserActivity()">Update</div></li>
     </ul>
 
     <div id="errorBox">
@@ -29,7 +28,7 @@
 
 
     <script>
-        summonChad = () => {
+        const summonChad = () => {
             //window.open("https://static.wikia.nocookie.net/be-like-bro/images/c/cf/Chad.jpg/revision/latest/top-crop/width/360/height/450?cb=20180403173350", '_blank');
             window.open("https://i.kym-cdn.com/photos/images/original/001/318/180/0eb.jpg", '_blank');
         }
@@ -44,6 +43,10 @@
 
         reactivateUser = () => {
             //Add rest of needed scripting to reactivate user
+        }
+
+        const updateUserActivity = () => {
+            //add the scripting to update user activity based on the radio button.
         }
 
     </script>
