@@ -3,9 +3,13 @@
 // const http = require('http');
 // const { Server } = require("socket.io");
 
-summonChad = () => {
+const summonChad = () => {
     //window.open("https://static.wikia.nocookie.net/be-like-bro/images/c/cf/Chad.jpg/revision/latest/top-crop/width/360/height/450?cb=20180403173350", '_blank');
     window.open("https://i.kym-cdn.com/photos/images/original/001/318/180/0eb.jpg", '_blank');
+}
+
+const summonChad2 = () => {
+    window.open("https://static.wikia.nocookie.net/be-like-bro/images/c/cf/Chad.jpg/revision/latest/top-crop/width/360/height/450?cb=20180403173350", '_blank');
 }
 
 const email_pattern =/.+@.{2,}\..{2,}/i;
