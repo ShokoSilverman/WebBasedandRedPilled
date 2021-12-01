@@ -2,7 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>ChadRoom</title>
+    <script>
+        //Validate User is Logged In
+        const validate = async () => {
+            //Ping API to compare JWT Tokens
+            const response = await fetch("http://localhost:80/anyone/validate", {method: "POST", body: localStorage.getItem("JWT")});
+            const isValid = await response.text();
+            if(isValid != 'true'){
+                location.href = '/registration';
+            }
+        }
+        validate();
+    </script>
 <!--    <link href='style.css' rel='stylesheet'>-->
 <!--    <link rel="stylesheet" type="text/css" href="test.css">-->
     <style>
@@ -182,14 +194,8 @@ ul {
 
 
         function userLogout() {
-            //console.log("Logout Event Hit");
-            const request = new XMLHttpRequest();
-            request.open("GET", "http://localhost:80/anyone/logout");
-            request.send();
-            request.onload = () => {
-                //alert(request.responseText)
-                location.href = request.responseText;
-            }
+            localStorage.removeItem("JWT");
+           location.href = '/registration';
         }
     </script>
 </body>

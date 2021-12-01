@@ -92,11 +92,10 @@ function userLogin() {
     console.log(params);
     request.onload = () => {
         //Redirects to URL returned by API
-        //console.log(request.responseText)
-        //alert(request.responseText);
-        //location.href = request.responseText;
-        if (request.responseText == 'true'){
+        let jsonObject = JSON.parse(request.responseText);
+        if (jsonObject.Success){
             //alert(request.responseText);
+            localStorage.setItem("JWT", jsonObject.JWT);
             location.href = 'http://localhost:81/';
         }else{
             document.getElementById("usernameLogin").innerHTML='';
