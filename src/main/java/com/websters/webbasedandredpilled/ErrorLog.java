@@ -23,12 +23,17 @@ public class ErrorLog {
     @Getter
     @Setter
     private String errorType;
+    @Getter
+    @Setter
+    private int statusCode;
 
-    public ErrorLog(String stackTrace, String errorType) {
+    //has all the info needed to see what happened and when with the error
+    public ErrorLog(String stackTrace, String errorType, int statusCode) {
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         this.time = LocalDateTime.now().format(myFormatObj);
         this.stackTrace = stackTrace;
         this.errorType = errorType;
+        this.statusCode = statusCode;
     }
 
     public ErrorLog(){}

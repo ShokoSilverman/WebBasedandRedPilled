@@ -39,7 +39,7 @@ public class MongoDAL {
         //writeUser(testUser);//use this to test and turn on db
         ChatLog newChatLog = new ChatLog("newUser", new MessagePOJO[]{});
         //writeChatLog(newChatLog);
-        ErrorLog newErrorLog = new ErrorLog( "spooky stack trace", "hella broken");
+        //ErrorLog newErrorLog = new ErrorLog( "spooky stack trace", "hella broken");
         //writeError(newErrorLog);
         //System.out.println(setIsActive("email@email.com", false));
         //System.out.println(newUserName("email@email.com", "testPass", "newName"));
