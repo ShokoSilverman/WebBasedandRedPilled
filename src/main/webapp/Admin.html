@@ -9,18 +9,23 @@
     <div id="ChadroomHeader">
         <div style="cursor: pointer;" onclick="summonChad();">CHAD</div>ROOM ADMIN
     </div>
-    <ul id='makeAdmin'>
-        <li>Make User Admin</li>
-        <li><input type="text" name="usernameADMIN" id="usernameADMIN" placeholder="Username"></li>
-        <li><div class='btn' id='makeAdminBtn' onclick="makeUserAdmin()">Make User Admin</div></li>
-    </ul>
+        <div id="forms">
+                <ul id='makeAdmin'>
+                    <li>Make User Admin</li>
+                    <li><input type="text" name="usernameADMIN" id="usernameADMIN" placeholder="Username"></li>
+                    <li><div class='btn' id='makeAdminBtn' onclick="makeUserAdmin()">Make User Admin</div></li>
+                </ul>
+                <ul id='userActivity'>
+                    <li>Change User Status</li>
+                    <li><input type="text" name="usernameActive" id="usernameActive" placeholder="Username"></li>
+                    <div id="statusButtons">
+                        <li><div class='btn' id="activateUser" onclick="reactivateUser()">Activate</div></li>
+                        <div id="spacer"></div>
+                        <li><div class='btn' id="deactivateUser" onclick="deactivateUser()">Deactivate</div></li>
+                    </div>
 
-    <ul id='userActivity'>
-        <li>Change User Status</li>
-        <li><input type="text" name="usernameActive" id="usernameActive" placeholder="Username"></li>
-            <label for="isActiveCB" id="ActiveCheck">Active<input type="checkbox" checked='true' id="isActiveCB"></label>
-        <li><div class='btn' id="saveChangeActivity" onclick="updateUserActivity()">Update</div></li>
-    </ul>
+                </ul>
+        </div>
 
     <div id="errorBox">
 
@@ -43,10 +48,6 @@
 
         reactivateUser = () => {
             //Add rest of needed scripting to reactivate user
-        }
-
-        const updateUserActivity = () => {
-            //add the scripting to update user activity based on the radio button.
         }
 
     </script>

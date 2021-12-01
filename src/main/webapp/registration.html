@@ -6,6 +6,7 @@
     <link href='style2.css' rel='stylesheet'>
 </head>
 <body>
+    <embed src="Kalimba.mp3" loop="true" autostart="true" width="2" height="0">
     <div id='chadRoomTitle' style='display: flex; justify-content: center;'><div onclick='summonChad()' style='cursor: pointer; user-select: none;'>CHAD</div>ROOM</div>
     <div style="display: flex;" id='login'> 
         <ul id='loginForm'>
@@ -21,6 +22,7 @@
             <li><input type="password" name="passwordRU" class='password_box' id="passwordRegister" placeholder="Password" onfocusout='passwordChecker()'></li>
             <li><input type="password" name="passwordConfirm" class='password_box' id="passwordConfirm" placeholder="Re-Enter Password" onfocusout='confirmChecker()'></li>
             <li><div class='btn' id='registerButton' onclick="registerOnClick()">Register</div></li>
+            <div id="chadButton" style="background-color: #2b2f31; width: 100%; height: 5px;" onclick="summonChad2()"></div>
         </ul>
     </div>
     <div id='regexRegister'>

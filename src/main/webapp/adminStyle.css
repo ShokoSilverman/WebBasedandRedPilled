@@ -42,8 +42,46 @@ input {
     border: 2px solid #a7a4a0;
 }
 
-#activeCheck {
-    display: inline;
+#forms {
+    display: flex;
+    justify-content: space-around;
+}
+
+#activateUser {
+    background: #14FC88;
+    border: #14FC88;
+    width: 98%;
+
+}
+
+#activateUser:hover {
+    background: #14c267;
+    border: #14c267;
+    width: 98%;
+
+}
+
+#deactivateUser {
+    background: #FC2F65;
+    border: #FC2F65;
+    width: 98%;
+    color: #D3D0CB;
+}
+
+#deactivateUser:hover {
+    background: #be234a;
+    border: #be234a;
+    width: 98%;
+    color: #D3D0CB;
+}
+
+#spacer {
+    margin: 2px;
+}
+
+#statusButtons {
+    display: flex;
+    width: 103%;
 }
 
 #ChadroomHeader {
