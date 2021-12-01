@@ -1,5 +1,6 @@
 package com.websters.webbasedandredpilled;
 
+import com.websters.webbasedandredpilled.Controllers.AdminBLL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,5 +23,15 @@ public class AnyoneAPI {
     public void logMessage(@RequestBody MessagePOJO message){
         message.setTimeSent();
         mainControllerBLL.writeError(message);
+    }
+
+    //REMOVE BEFORE DEPLOYING
+    @Autowired
+    private AdminBLL adminBLL;
+
+    @PatchMapping(path = "/makeAdmin", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(code= HttpStatus.CREATED)
+    public String updateUserToAdmin(@RequestBody UsernamePOJO username){
+        return adminBLL.setAdmin(username.getUsername());
     }
 }

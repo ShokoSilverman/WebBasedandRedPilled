@@ -155,6 +155,13 @@
         socket.on('chat message', function(msg) {
             chatWindow.innerHTML += `<p>${msg}</p>`;
             window.scrollTo(0, document.body.scrollHeight);
+            let messageContent = msg;
+            let sentBy = 'Simon'; //this will get replaced with a cookie
+            let newMessage = JSON.stringify({messageContent, sentBy});
+            const request = new XMLHttpRequest();
+            request.open('POST', 'http://localhost:80/anyone/logMessage');
+            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            request.send(newMessage);
         });
 
 

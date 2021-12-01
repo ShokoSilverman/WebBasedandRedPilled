@@ -33,7 +33,7 @@ public class ErrorHandler implements ErrorController {
         System.out.println("the message TO SAVE: ");
         exception.printStackTrace();
 
-        res.setStatus(HttpServletResponse.SC_FORBIDDEN); //403
+        //res.setStatus(HttpServletResponse.SC_FORBIDDEN); //403
         return smessage;
     }
 

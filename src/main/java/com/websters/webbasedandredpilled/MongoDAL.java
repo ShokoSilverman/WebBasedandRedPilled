@@ -68,6 +68,7 @@ public class MongoDAL {
         errorLogRepo.save(newError);
         System.out.println("Error saved");
     }
+
     public void writeChatLog(ChatLog newChatLog){
         chatLogRepo.save(newChatLog);
         System.out.println("ChatLog saved");
