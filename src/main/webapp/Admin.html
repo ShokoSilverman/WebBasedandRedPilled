@@ -38,15 +38,25 @@
             window.open("https://i.kym-cdn.com/photos/images/original/001/318/180/0eb.jpg", '_blank');
         }
 
-        makeUserAdmin = () => {
+        const makeUserAdmin = () => {
             //Add rest of needed scripting to make user admin
+            let username = document.querySelector('#usernameADMIN').value;
+            let userNameObj = JSON.stringify({username});
+            const request = new XMLHttpRequest();
+            request.open("PATCH", "http://localhost:80/admin/makeAdmin");
+            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            request.send(userNameObj);
+            request.onload = () => {
+                alert(request.responseText);
+            }
+
         }
 
-        deactivateUser = () => {
+        const deactivateUser = () => {
             //Add rest of needed scripting to deactivate user
         }
 
-        reactivateUser = () => {
+        const reactivateUser = () => {
             //Add rest of needed scripting to reactivate user
         }
 

@@ -22,8 +22,14 @@ public class AdminBLL {
             UserPOJO userPOJO = optUser.get();
             List<String> userRoles = Arrays.asList(userPOJO.getSecurityRoles()); //grabs the user's role list, casts it to list
             if (userRoles.contains("ADMIN")) return "User is already admin!"; //checks if the user is already an admin
-            userRoles.add("ADMIN");
-            userPOJO.setSecurityRoles((String[]) userRoles.toArray()); //sets the user roles to be the new list
+            System.out.println("---------------------------------------------------------------------------------------------------------");
+            System.out.println(userRoles);
+            //userRoles.add("ADMIN");
+            System.out.println(userRoles);
+            String[] newRoleList = {"USER", "ADMIN"};
+            //userPOJO.setSecurityRoles((String[]) userRoles.toArray()); //sets the user roles to be the new list
+            userPOJO.setSecurityRoles(newRoleList);
+            userRepo.save(userPOJO);
             return String.format("%s has been set to an admin", username);
         }else{
             return "User not found";

@@ -60,8 +60,8 @@ public class Security extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/anyone/**").permitAll()
-                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/user/**").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .and().formLogin().loginPage("/registration.html")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/chatRoom.html", true)
@@ -69,7 +69,7 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .logout().logoutUrl("/logout")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                //.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .csrf().disable()
                 .httpBasic();
