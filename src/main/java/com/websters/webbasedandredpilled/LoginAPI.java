@@ -27,14 +27,20 @@ public class LoginAPI {
     public Map<String, Object> login(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password) {
 
         Map returnMap = new HashMap<>();
-        if (bll.verifyUserCredentials(username, password)) {
-            // Make JWT Token
-            String jwt = JWTPOJO.from(username, Map.of()).getToken();
-            //Pass back the JWT and Login Success
-            returnMap.put("JWT", jwt);
-            returnMap.put("Success", true);
-        } else {
-            returnMap.put("Success", false);
+        Map verifyMap = bll.verifyUserCredentials(username, password);
+        if(verifyMap.get("isActive").equals(true)) {
+            returnMap.put("isBanned", true);
+            if (verifyMap.get("correctCredentials").equals(true)) {
+                // Make JWT Token
+                String jwt = JWTPOJO.from(username, Map.of()).getToken();
+                //Pass back the JWT and Login Success
+                returnMap.put("JWT", jwt);
+                returnMap.put("Success", true);
+            } else {
+                returnMap.put("Success", false);
+            }
+        }else{
+            returnMap.put("isBanned", false);
         }
         return returnMap;
     }
