@@ -34,6 +34,7 @@ public class MainControllerBLL {
 
     public boolean verifyUserCredentials(String username, String password) {
         UserPOJO currentUser = userRepo.findFirstByUsername(username);
+        if (!currentUser.isActive()) return false; //checks if the user is active, if not, do not sign them on
         boolean correctCreds = false;
         if (BCrypt.checkpw(password, currentUser.getPassword())) {
             System.out.println("BLL Credentials match");

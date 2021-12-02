@@ -25,6 +25,7 @@ public class LoginAPI {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseStatus(code = HttpStatus.CREATED)
     public Map<String, Object> login(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password) {
+
         Map returnMap = new HashMap<>();
         if (bll.verifyUserCredentials(username, password)) {
             // Make JWT Token

@@ -153,6 +153,10 @@ public class MongoDAL {
 
     }
 
+//    public boolean userIsValid(UserPOJO userPOJO){
+//        return userPOJO.isActive();
+//    }
+
 
 
 }
