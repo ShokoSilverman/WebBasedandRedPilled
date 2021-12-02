@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.management.openmbean.KeyAlreadyExistsException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,6 +91,7 @@ public class MongoDAL {
         Optional<UserPOJO> userToAddOpt = userRepo.findFirstByUsernameIs(username);
         if (userToAddOpt.isPresent()){
             UserPOJO userToAdd = userToAddOpt.get(); //only grabs if it exists
+            if(Arrays.asList(userToAdd.getSecurityRoles()).contains("ADMIN")) return "Can not edit an admin!";
             userToAdd.setActive(setActive);
             userRepo.save(userToAdd);
             return userToAdd.getUsername() + " activity set to: " + userToAdd.isActive();
