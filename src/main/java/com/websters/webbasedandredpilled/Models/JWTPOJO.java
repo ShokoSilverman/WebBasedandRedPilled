@@ -1,4 +1,4 @@
-package com.websters.webbasedandredpilled;
+package com.websters.webbasedandredpilled.Models;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,4 +1,4 @@
-package com.websters.webbasedandredpilled;
+package com.websters.webbasedandredpilled.Models;
 
 public class ExceptionMessage {
     private String exceptionMessage;

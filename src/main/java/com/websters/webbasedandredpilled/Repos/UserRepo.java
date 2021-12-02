@@ -1,6 +1,6 @@
 package com.websters.webbasedandredpilled.Repos;
 
-import com.websters.webbasedandredpilled.UserPOJO;
+import com.websters.webbasedandredpilled.Models.UserPOJO;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

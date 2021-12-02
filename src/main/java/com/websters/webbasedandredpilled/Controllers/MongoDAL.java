@@ -1,10 +1,14 @@
-package com.websters.webbasedandredpilled;
+package com.websters.webbasedandredpilled.Controllers;
 
 
+import com.websters.webbasedandredpilled.Models.ChatLog;
+import com.websters.webbasedandredpilled.Models.ErrorLog;
+import com.websters.webbasedandredpilled.Models.MessagePOJO;
 import com.websters.webbasedandredpilled.Repos.ChatLogRepo;
 import com.websters.webbasedandredpilled.Repos.ErrorLogRepo;
 import com.websters.webbasedandredpilled.Repos.MessageRepo;
 import com.websters.webbasedandredpilled.Repos.UserRepo;
+import com.websters.webbasedandredpilled.Models.UserPOJO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

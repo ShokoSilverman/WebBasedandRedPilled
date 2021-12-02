@@ -1,11 +1,10 @@
 package com.websters.webbasedandredpilled.Controllers;
 
 import com.websters.webbasedandredpilled.Repos.UserRepo;
-import com.websters.webbasedandredpilled.UserPOJO;
+import com.websters.webbasedandredpilled.Models.UserPOJO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;

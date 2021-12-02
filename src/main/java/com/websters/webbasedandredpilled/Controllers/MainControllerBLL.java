@@ -1,15 +1,13 @@
-package com.websters.webbasedandredpilled;
+package com.websters.webbasedandredpilled.Controllers;
 
+import com.websters.webbasedandredpilled.Models.ErrorLog;
+import com.websters.webbasedandredpilled.Models.MessagePOJO;
 import com.websters.webbasedandredpilled.Repos.UserRepo;
+import com.websters.webbasedandredpilled.Models.UserPOJO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.spec.KeySpec;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

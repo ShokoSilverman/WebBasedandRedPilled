@@ -1,17 +1,13 @@
-package com.websters.webbasedandredpilled;
+package com.websters.webbasedandredpilled.APIs;
 
+import com.websters.webbasedandredpilled.Models.JWTPOJO;
+import com.websters.webbasedandredpilled.Controllers.MainControllerBLL;
 import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.lang.Maps;
 import io.jsonwebtoken.security.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 

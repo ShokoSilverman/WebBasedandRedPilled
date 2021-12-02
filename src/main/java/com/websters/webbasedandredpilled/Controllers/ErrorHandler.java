@@ -1,8 +1,9 @@
-package com.websters.webbasedandredpilled;
+package com.websters.webbasedandredpilled.Controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.websters.webbasedandredpilled.Models.ErrorLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.MediaType;
