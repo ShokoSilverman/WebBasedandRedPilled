@@ -217,7 +217,7 @@
 
             const username = parseJWT().sub;
 
-            chatWindow.innerHTML += `<div><p>${username}</p><p>${msg}</p></div>`;
+            chatWindow.innerHTML += `<div><p class="username">${username}</p><p class="msg">${msg}</p></div>`;
             window.scrollTo(0, document.body.scrollHeight);
             let messageContent = msg;
             let sentBy = 'Simon'; //this will get replaced with a cookie
