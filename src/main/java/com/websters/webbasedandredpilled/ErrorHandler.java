@@ -29,23 +29,26 @@ public class ErrorHandler implements ErrorController {
         //gets the exception itself which we can then save
         Exception exception = (Exception) req.getAttribute("javax.servlet.error.exception");
 
-        //uses the custom message to display to the user what happened
-        String smessage = "An error accrued: \nError message: " + exception.getMessage() + "\nError Status Code: " + statusCode;
+        String stringMessage = "There is an error sorry for the inconvenience";
 
-        //turns the stack trace into a string which we store in the db
-        StringWriter sw = new StringWriter();
-        PrintWriter pw = new PrintWriter(sw);
-        exception.printStackTrace(pw);
+        try {
+            stringMessage = "An error accrued: \nError message: " + exception.getMessage() + "\nError Status Code: " + statusCode;
 
-        //makes the error log object and stores it into the db
-        ErrorLog eLog = new ErrorLog(sw.toString(), exception.getMessage(), statusCode);
-        mongo.writeError(eLog);
+            //turns the stack trace into a string which we store in the db
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            exception.printStackTrace(pw);
 
-        //sets the forbidden status on the page
-        res.setStatus(HttpServletResponse.SC_FORBIDDEN); //403
+            //makes the error log object and stores it into the db
+            ErrorLog eLog = new ErrorLog(sw.toString(), exception.getMessage(), statusCode);
+            mongo.writeError(eLog);
 
-        //returns the message to the user which tells them what happened
-        return smessage;
+            //sets the forbidden status on the page
+            res.setStatus(HttpServletResponse.SC_FORBIDDEN); //403
+        } catch (Exception e){
+            //System.out.println("It catches the weird null");
+        }
+        return stringMessage;
     }
 
     public String getErrorPath() {
