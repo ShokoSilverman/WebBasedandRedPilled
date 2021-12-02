@@ -24,12 +24,12 @@ public class LoginAPI {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Map<String, Object> login(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("Login API Hit");
+    public Map<String, Object> login(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password) {
         Map returnMap = new HashMap<>();
         if (bll.verifyUserCredentials(username, password)) {
             // Make JWT Token
             String jwt = JWTPOJO.from(username, Map.of()).getToken();
+            //Pass back the JWT and Login Success
             returnMap.put("JWT", jwt);
             returnMap.put("Success", true);
         } else {
@@ -42,11 +42,9 @@ public class LoginAPI {
 
     @RequestMapping(value = "/validate", method = RequestMethod.POST)
     public boolean validateJWT(@RequestBody String jwtToken) {
-        String username = null;
-        JWTPOJO jwt = null;
         //Compare Token and IF correct return True
         try {
-            //Token to Compare
+            //Compare Token and catch exception if incorrect.
             JWTPOJO.parseToken(jwtToken);
             return true;
         } catch (IllegalArgumentException e) {
