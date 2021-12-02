@@ -200,8 +200,26 @@
                 }
         });
 
-        socket.on('chat message', function(msg) {
-            chatWindow.innerHTML += `<p>${msg}</p>`;
+        socket.on('chat message', async function (msg) {
+            const parseJWT = () => {
+                let token = loadJWT();
+                if (!token)
+                    return undefined;
+
+                let payload = atob(token.split('.')[1]);
+                let jwt = JSON.parse(payload);
+                return jwt;
+            };
+
+            const loadJWT = () => {
+                let jwt = localStorage.getItem('JWT') ? localStorage.getItem('JWT') : undefined;
+
+                return jwt;
+            };
+
+            const username = parseJWT().sub;
+
+            chatWindow.innerHTML += `<div><p>${username}</p><p>${msg}</p></div>`;
             window.scrollTo(0, document.body.scrollHeight);
             let messageContent = msg;
             let sentBy = 'Simon'; //this will get replaced with a cookie
