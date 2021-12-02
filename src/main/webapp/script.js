@@ -90,19 +90,20 @@ function userLogin() {
     let password = document.getElementById("passwordLogin").value;
     let params = "?username=" + username + "&password=" + password;
     const request = new XMLHttpRequest();
+    //Send Username and Login as Params to the
     request.open("POST", "http://localhost:80/anyone/login" + params, true);
-    //alert(myString);
     request.send();
     console.log(params);
     request.onload = () => {
-        //Redirects to URL returned by API
-        //console.log(request.responseText)
-        //alert(request.responseText);
-        //location.href = request.responseText;
-        if (request.responseText == 'true'){
-            //alert(request.responseText);
+        //Success returned by API if Valid is correct
+        let jsonObject = JSON.parse(request.responseText);
+        if (jsonObject.Success){
+            //Store JWT in local storage
+            localStorage.setItem("JWT", jsonObject.JWT);
+            //Redirects to URL
             location.href = 'http://localhost:81/';
         }else{
+            //Alerts user of invalid login
             document.getElementById("usernameLogin").innerHTML='';
             document.getElementById("passwordLogin").innerHTML='';
             alert('Username or password incorrect! >:(');

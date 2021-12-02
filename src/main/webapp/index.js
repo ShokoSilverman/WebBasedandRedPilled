@@ -12,6 +12,11 @@ app.get('/registration', (req, res) => {
     res.sendFile(__dirname + '/registration.html');
 });
 
+//Dynamic file routing (registration on port 81
+app.get('/:file', (req, res) => {
+    res.sendFile(__dirname + '/' + req.params.file);
+});
+
 io.on('connection', (socket) => {
     socket.on('chat message', msg => {
         io.emit('chat message', msg);
