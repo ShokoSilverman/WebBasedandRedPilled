@@ -11,6 +11,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.KeySpec;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class MainControllerBLL {
@@ -32,18 +34,24 @@ public class MainControllerBLL {
 
     }
 
-    public boolean verifyUserCredentials(String username, String password) {
+    public Map<String, Object> verifyUserCredentials(String username, String password) {
+        Map returnMap = new HashMap<>();
         UserPOJO currentUser = userRepo.findFirstByUsername(username);
-        if (!currentUser.isActive()) return false; //checks if the user is active, if not, do not sign them on
-        boolean correctCreds = false;
+        if (!currentUser.isActive()){
+            //checks if the user is active, if not, do not sign them on
+            returnMap.put("isActive", false);
+        }else{
+            returnMap.put("isActive", true);
+        }
         if (BCrypt.checkpw(password, currentUser.getPassword())) {
             System.out.println("BLL Credentials match");
-            correctCreds = true;
-            System.out.println("Validate Creds: " + correctCreds);
+            returnMap.put("correctCredentials", true);
+            System.out.println("Validate Creds: " + returnMap.get("correctCredentials"));
         }else{
             //TODO throw custom error
+            returnMap.put("correctCredentials", false);
         }
-        return correctCreds;
+        return returnMap;
     }
 
 

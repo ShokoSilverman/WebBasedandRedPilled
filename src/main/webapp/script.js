@@ -97,16 +97,27 @@ function userLogin() {
     request.onload = () => {
         //Success returned by API if Valid is correct
         let jsonObject = JSON.parse(request.responseText);
-        if (jsonObject.Success){
-            //Store JWT in local storage
-            localStorage.setItem("JWT", jsonObject.JWT);
-            //Redirects to URL
-            location.href = 'http://localhost:81/';
+        //Check if user account has been banned
+        if(jsonObject.isBanned) {
+            //Check if user account is valid
+            if (jsonObject.Success) {
+                //Store JWT in local storage
+                localStorage.setItem("JWT", jsonObject.JWT);
+                //Redirects to URL
+                location.href = 'http://localhost:81/';
+            } else {
+                //Empty Login Fields
+                document.getElementById("usernameLogin").innerHTML = '';
+                document.getElementById("passwordLogin").innerHTML = '';
+                //Alerts user of invalid login
+                alert('Username or password incorrect! >:(');
+            }
         }else{
-            //Alerts user of invalid login
-            document.getElementById("usernameLogin").innerHTML='';
-            document.getElementById("passwordLogin").innerHTML='';
-            alert('Username or password incorrect! >:(');
+            //Empty Login Fields
+            document.getElementById("usernameLogin").innerHTML = '';
+            document.getElementById("passwordLogin").innerHTML = '';
+            //Alert user of disabled account
+            alert('Your account has been BANNED');
         }
     }
 }
