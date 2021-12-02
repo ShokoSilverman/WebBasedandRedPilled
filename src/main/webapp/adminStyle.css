@@ -84,6 +84,19 @@ input {
     width: 103%;
 }
 
+#errorBoxes {
+    display: flex;
+    justify-content: space-around;
+}
+
+#makeAdminErrorBox {
+    width: 350px;
+}
+
+#userStatusErrorBox {
+    width: 350px;
+}
+
 #ChadroomHeader {
     text-align: center;
     font-size: 78pt;
