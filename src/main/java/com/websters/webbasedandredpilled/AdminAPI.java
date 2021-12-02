@@ -16,6 +16,9 @@ public class AdminAPI {
     @Autowired
     private AdminBLL adminBLL;
 
+    @Autowired
+    private MongoDAL mongo;
+
     @GetMapping(path="/speak")
     public String speak(){
         return "admin api speaking";
@@ -27,14 +30,11 @@ public class AdminAPI {
         return adminBLL.setAdmin(username.getUsername());
     }
 
-    @PatchMapping(path = "/disableUser")
+    @PatchMapping(path = "/isActiveUser", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(code= HttpStatus.CREATED)
-    public String disableUser(){
-        //Find User
-        //Change User isActive value to False
-        //Return a message for the user
-
-        return"";
+    public String disableUser(@RequestBody userDisablePOJO userDisablePOJO){
+        System.out.println(userDisablePOJO.getIsActive());
+        return mongo.setIsActive(userDisablePOJO.getUsername(), Boolean.parseBoolean(userDisablePOJO.getIsActive()));
     }
 
 

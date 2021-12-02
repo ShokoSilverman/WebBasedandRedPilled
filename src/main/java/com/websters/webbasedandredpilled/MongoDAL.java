@@ -85,15 +85,16 @@ public class MongoDAL {
     //check the security class
 
     //active on off
-    public String setIsActive(String email, boolean setActive){ //true = is active | false = not active //takes in the email because it is the ID
-        Optional<UserPOJO> userToAddOpt = userRepo.findById(email);
+    public String setIsActive(String username, boolean setActive){ //true = is active | false = not active //takes in the email because it is the ID
+        //Optional<UserPOJO> userToAddOpt = userRepo.findById(email);
+        Optional<UserPOJO> userToAddOpt = userRepo.findFirstByUsernameIs(username);
         if (userToAddOpt.isPresent()){
             UserPOJO userToAdd = userToAddOpt.get(); //only grabs if it exists
             userToAdd.setActive(setActive);
             userRepo.save(userToAdd);
             return userToAdd.getUsername() + " activity set to: " + userToAdd.isActive();
         }else{
-            return email + " not found";
+            return String.format("%s not found", username);
         }
     }
 
