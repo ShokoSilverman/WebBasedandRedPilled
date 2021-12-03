@@ -36,6 +36,8 @@
         </div>
     </div>
 
+    <div class="btn" onclick="backToRoom()" style="width:200px; position: absolute; right: 10px; top:10px;">ChadRoom</div>
+
 
     <script>
         const summonChad = () => {
@@ -47,23 +49,45 @@
             //Add rest of needed scripting to make user admin
             let username = document.querySelector('#usernameADMIN').value;
             let userNameObj = JSON.stringify({username});
+            let outBox = document.getElementById('makeAdminErrorBox');
             const request = new XMLHttpRequest();
-            request.open("PATCH", "http://localhost:80/admin/makeAdmin");
+            console.log(userNameObj);
+            request.open("PATCH", "http://localhost:80/anyone/makeAdmin");
             request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             request.send(userNameObj);
             request.onload = () => {
-                alert(request.responseText);
+                // alert(request.responseText);
+                outBox.innerHTML=request.responseText;
+
             }
 
         }
 
+        const userActivation = (isActive) =>{
+            let username = document.querySelector('#usernameActive').value;
+            let activeUserObj = JSON.stringify({username, isActive:isActive})
+            let outBox = document.getElementById('userStatusErrorBox');
+            const request = new XMLHttpRequest();
+            request.open("PATCH", "http://localhost:80/anyone/isActiveUser");
+            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            request.send(activeUserObj)
+            request.onload = () => {
+                outBox.innerHTML=request.responseText;
+            }
+        }
+
         const deactivateUser = () => {
-            //Add rest of needed scripting to deactivate user
+            userActivation('false')
         }
 
         const reactivateUser = () => {
-            //Add rest of needed scripting to reactivate user
+            userActivation('true')
         }
+
+        const backToRoom = () => {
+            location.href = 'http://localhost:81/'
+        }
+
 
     </script>
 </body>
