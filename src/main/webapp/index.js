@@ -12,6 +12,10 @@ app.get('/registration', (req, res) => {
     res.sendFile(__dirname + '/registration.html');
 });
 
+app.get('/admin', (req, res) => {
+    res.sendFile(__dirname + '/Admin.html');
+});
+
 //Dynamic file routing (registration on port 81
 app.get('/:file', (req, res) => {
     res.sendFile(__dirname + '/' + req.params.file);
