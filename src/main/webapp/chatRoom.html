@@ -45,8 +45,13 @@
             border: 2px solid #a7a4a0;
         }
 
-        .msgAndUsername {
+        .msgAndUsername:nth-child(2n) {
             background-color: #2b2f31;
+        }
+
+        .username {
+            font-size: medium;
+            color: #F49F0A;
         }
 
         #header {
@@ -225,7 +230,7 @@
 
             const username = parseJWT().sub;
 
-            chatWindow.innerHTML += `<div class="msgAndUsername"><p class="username">${username}</p><p class="msg">${msg}</p></div>`;
+            chatWindow.innerHTML += `<div class="msgAndUsername"><p class="username">${username}:</p><p class="msg">${msg}</p></div>`;
             window.scrollTo(0, document.body.scrollHeight);
             let messageContent = msg;
             let sentBy = 'Simon'; //this will get replaced with a cookie
