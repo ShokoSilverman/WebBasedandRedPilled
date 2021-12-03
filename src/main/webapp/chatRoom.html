@@ -45,6 +45,10 @@
             border: 2px solid #a7a4a0;
         }
 
+        .msgAndUsername {
+            background-color: #2b2f31;
+        }
+
         #header {
             position: absolute;
             display: flex;
@@ -151,6 +155,8 @@
             line-height: 200%;
             border-radius: 0%;
         }
+
+
     </style>
 </head>
 <body>
@@ -219,7 +225,7 @@
 
             const username = parseJWT().sub;
 
-            chatWindow.innerHTML += `<div><p>${username}</p><p>${msg}</p></div>`;
+            chatWindow.innerHTML += `<div class="msgAndUsername"><p class="username">${username}</p><p class="msg">${msg}</p></div>`;
             window.scrollTo(0, document.body.scrollHeight);
             let messageContent = msg;
             let sentBy = 'Simon'; //this will get replaced with a cookie
