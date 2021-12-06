@@ -22,10 +22,10 @@ public class AdminBLL {
             UserPOJO userPOJO = optUser.get();
             List<String> userRoles = Arrays.asList(userPOJO.getSecurityRoles()); //grabs the user's role list, casts it to list
             if (userRoles.contains("ADMIN")) return "User is already admin!"; //checks if the user is already an admin
-            System.out.println("---------------------------------------------------------------------------------------------------------");
-            System.out.println(userRoles);
+            //System.out.println("---------------------------------------------------------------------------------------------------------");
+            //System.out.println(userRoles);
             //userRoles.add("ADMIN");
-            System.out.println(userRoles);
+            //System.out.println(userRoles);
             String[] newRoleList = {"USER", "ADMIN"};
             //userPOJO.setSecurityRoles((String[]) userRoles.toArray()); //sets the user roles to be the new list
             userPOJO.setSecurityRoles(newRoleList);

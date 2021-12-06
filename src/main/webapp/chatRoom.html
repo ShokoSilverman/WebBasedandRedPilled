@@ -5,23 +5,24 @@
     <title>ChadRoom</title>
 <!--    Checks that the JWT is valid before user can see this page.-->
     <script>
-
+        //Verify JWT is correct and return the Payload
         const parseJWT = () => {
             let token = loadJWT();
-            if (!token)
+            if (!token) {
                 return undefined;
-
+            }
             let payload = atob(token.split('.')[1]);
             let jwt = JSON.parse(payload);
-            // console.log(jwt);
             return jwt;
         };
 
+        //Pull JWT From Local Storage
         const loadJWT = () => {
             let jwt = localStorage.getItem('JWT') ? localStorage.getItem('JWT') : undefined;
             return jwt;
         };
 
+        //Confirm the User is an Admin
         const checkIfAdmin = async () =>{
             let user = parseJWT();
             console.log(user.sub);
@@ -43,7 +44,6 @@
                 location.href = '/registration';
             }
         }
-
         validate();
         checkIfAdmin();
     </script>
@@ -75,8 +75,14 @@
             border: 2px solid #a7a4a0;
         }
 
+        .msgAndUsername {
+            overflow-wrap: break-word;
+        }
+
         .msgAndUsername:nth-child(2n) {
             background-color: #2b2f31;
+            min-width: 100%;
+
         }
 
         .username {
@@ -211,7 +217,7 @@
                 Venmo: @Grayson_doodles &nbsp;
                 (I do art commissions)&nbsp;
                 @Simon_Silverman &nbsp;
-                (I don't do art commisions) &nbsp;
+                (I don't do art commissions) &nbsp;
             </p>
         </div>
     </div>
@@ -222,9 +228,13 @@
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
+
         const summonChad = () => {
             window.open("https://i.kym-cdn.com/photos/images/original/001/318/180/0eb.jpg", '_blank');
         }
+
+        const username = parseJWT().sub;
+        const usernameString = username + "";
 
         var socket = io();
 
@@ -236,38 +246,16 @@
         document.getElementById("messageBtn").addEventListener("click", function(e) {
             e.preventDefault();
                 if (message.value) {
-                    socket.emit('chat message', message.value);
+                    socket.emit('chat message', {message:message.value, username:usernameString});
                     message.value = '';
                 }
         });
 
-        const adminPage = () =>{
-            location.href = '/admin'
-        }
-
-        socket.on('chat message', async function (msg) {
-            const parseJWT = () => {
-                let token = loadJWT();
-                if (!token)
-                    return undefined;
-
-                let payload = atob(token.split('.')[1]);
-                let jwt = JSON.parse(payload);
-                return jwt;
-            };
-
-            const loadJWT = () => {
-                let jwt = localStorage.getItem('JWT') ? localStorage.getItem('JWT') : undefined;
-
-                return jwt;
-            };
-
-            const username = parseJWT().sub;
-
-            chatWindow.innerHTML += `<div class="msgAndUsername"><p class="username">${username}:</p><p class="msg">${msg}</p></div>`;
+        socket.on('chat message', async function (object) {
+            chatWindow.innerHTML += `<div class="msgAndUsername"><p class="username">${object.username}:</p><p class="msg">${object.message}</p></div>`;
             window.scrollTo(0, document.body.scrollHeight);
-            let messageContent = msg;
-            let sentBy = 'Simon'; //this will get replaced with a cookie
+            let messageContent = object.message;
+            let sentBy = object.username; //this will get replaced with a cookie
             let newMessage = JSON.stringify({messageContent, sentBy});
             const request = new XMLHttpRequest();
             request.open('POST', 'http://localhost:80/anyone/logMessage');
@@ -280,8 +268,12 @@
             localStorage.removeItem("JWT");
            location.href = '/registration';
         }
+
+        //Method to route to Admin page
+        adminPage = () =>{
+            location.href = '/admin'
+        }
     </script>
 </body>
-<!--please work-->
-<!-- josh when github -->
+<!--testing this branch thing-->
 </html>

@@ -42,6 +42,19 @@ input {
     border: 2px solid #a7a4a0;
 }
 
+#backButton {
+    width:200px;
+    position: absolute;
+    right: 10px;
+    top:10px;
+    background-color: #2b2f31;
+    border: none;
+}
+
+#backButton:hover {
+    color: #F49F0A;
+}
+
 #forms {
     display: flex;
     justify-content: space-around;
