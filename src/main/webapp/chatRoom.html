@@ -216,7 +216,7 @@
                 Venmo: @Grayson_doodles &nbsp;
                 (I do art commissions)&nbsp;
                 @Simon_Silverman &nbsp;
-                (I don't do art commisions) &nbsp;
+                (I don't do art commissions) &nbsp;
             </p>
         </div>
     </div>
@@ -231,21 +231,21 @@
             window.open("https://i.kym-cdn.com/photos/images/original/001/318/180/0eb.jpg", '_blank');
         }
 
-        const parseJWT = () => {
-            let token = loadJWT();
-            if (!token)
-                return undefined;
-
-            let payload = atob(token.split('.')[1]);
-            let jwt = JSON.parse(payload);
-            return jwt;
-        };
-
-        const loadJWT = () => {
-            let jwt = localStorage.getItem('JWT') ? localStorage.getItem('JWT') : undefined;
-
-            return jwt;
-        };
+        // const parseJWT = () => {
+        //     let token = loadJWT();
+        //     if (!token)
+        //         return undefined;
+        //
+        //     let payload = atob(token.split('.')[1]);
+        //     let jwt = JSON.parse(payload);
+        //     return jwt;
+        // };
+        //
+        // const loadJWT = () => {
+        //     let jwt = localStorage.getItem('JWT') ? localStorage.getItem('JWT') : undefined;
+        //
+        //     return jwt;
+        // };
 
         const username = parseJWT().sub;
         const usernameString = username + "";
@@ -267,7 +267,6 @@
 
         socket.on('chat message', async function (object) {
             console.log("THE CHAT MESSAGE socket.on ran")
-
             chatWindow.innerHTML += `<div class="msgAndUsername"><p class="username">${object.username}:</p><p class="msg">${object.message}</p></div>`;
             window.scrollTo(0, document.body.scrollHeight);
             let messageContent = object.message;
@@ -283,6 +282,10 @@
         function userLogout() {
             localStorage.removeItem("JWT");
            location.href = '/registration';
+        }
+
+        adminPage = () =>{
+            location.href = '/admin'
         }
     </script>
 </body>
