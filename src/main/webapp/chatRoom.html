@@ -5,6 +5,34 @@
     <title>ChadRoom</title>
 <!--    Checks that the JWT is valid before user can see this page.-->
     <script>
+
+        const parseJWT = () => {
+            let token = loadJWT();
+            if (!token)
+                return undefined;
+
+            let payload = atob(token.split('.')[1]);
+            let jwt = JSON.parse(payload);
+            // console.log(jwt);
+            return jwt;
+        };
+
+        const loadJWT = () => {
+            let jwt = localStorage.getItem('JWT') ? localStorage.getItem('JWT') : undefined;
+            return jwt;
+        };
+
+        const checkIfAdmin = async () =>{
+            let user = parseJWT();
+            console.log(user.sub);
+            //Ping API for user authorities
+            const response = await fetch("http://localhost:80/anyone/validAdmin", {method: "POST", body: user.sub + ""});
+            const isAdmin = await response.text();
+            if(isAdmin == 'true'){
+                document.getElementById("adminControlButton").style.visibility = "visible";
+            }
+        }
+
         //Validate User is Logged In
         const validate = async () => {
             //Ping API to compare JWT Tokens
@@ -16,6 +44,7 @@
             }
         }
         validate();
+        checkIfAdmin();
     </script>
 <!--    <link href='style.css' rel='stylesheet'>-->
 <!--    <link rel="stylesheet" type="text/css" href="test.css">-->
@@ -173,7 +202,7 @@
 <body>
 <h1>test</h1>
     <div id='header'>
-        <div id="adminControlButton">Admin Controls</div>
+        <div onclick="adminPage()" id="adminControlButton">Admin Controls</div>
         <div onclick="summonChad()" style="cursor: pointer;">CHAD</div><div>ROOM</div>
         <div class='btn' id='logoutButton' onclick="userLogout()">Logout</div>
     </div>
@@ -198,7 +227,6 @@
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
-
         const summonChad = () => {
             window.open("https://i.kym-cdn.com/photos/images/original/001/318/180/0eb.jpg", '_blank');
         }
@@ -258,7 +286,5 @@
         }
     </script>
 </body>
-<!--please work-->
-<!-- josh when github -->
-<!--bruh-->
+<!--testing this branch thing-->
 </html>
