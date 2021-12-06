@@ -30,34 +30,16 @@ public class Security extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-        System.out.println("configuring users");
-
-
         UserDetails newAdmin = User.withUsername("admin")
                 .password(passEncode().encode("passWord"))
                 .roles("ADMIN").build();
         auth.inMemoryAuthentication().withUser(newAdmin);
-        //memAuth.createUser(newAdmin);
-        System.out.println("Other user exists " + memAuth.userExists("admin"));
-
-//        ArrayList<UsersToAdd> userList = (ArrayList<UsersToAdd>) userRepo.findAll();
-//        for(UsersToAdd user : userList){
-//            UserDetails newUserAdd = User.withUsername(user.getUsername())
-//                    .password(passEncode().encode(user.getPassword()))
-//                    .roles(user.getSecurityRoles()).build();
-//            memAuth.createUser(newUserAdd);
-//        }
-
         auth.userDetailsService(getUserDetailsService());
 
     }
     // ///////////////////////////////////////////
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        System.out.println("configuring user perms");
-
         http.authorizeRequests()
                 .antMatchers("/anyone/**").permitAll()
                 .antMatchers("/user/**").hasAnyAuthority("USER", "ADMIN")
@@ -84,13 +66,11 @@ public class Security extends WebSecurityConfigurerAdapter {
 
     @Bean
     public InMemoryUserDetailsManager getInMemoryUserDetailsManager(){
-        System.out.println("*** Enter getInMemoryUserDetailsManager(");
         return memAuth;
     }
 
     @Bean
     public UserDetailsService getUserDetailsService(){
-
         return (name) -> userRepo.findFirstByUsername(name);
     }
 }

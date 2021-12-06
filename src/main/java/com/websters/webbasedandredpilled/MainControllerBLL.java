@@ -22,7 +22,6 @@ public class MainControllerBLL {
     @Autowired
     private UserRepo userRepo;
     //List of all Messages sent by User between Login and Sign out
-    //TODO Make this a Session Variable
     public ArrayList<MessagePOJO> messageList = new ArrayList<>();
     //List of all Errors that occur while User is on any page
     public ArrayList<ErrorLog> errorList = new ArrayList<>();
@@ -30,7 +29,6 @@ public class MainControllerBLL {
 
     public String encryptPass(String password){
         String pw_hash = BCrypt.hashpw(password, BCrypt.gensalt());
-        System.out.println("salted and hashpilled");
         return pw_hash;
 
     }
@@ -45,9 +43,7 @@ public class MainControllerBLL {
             returnMap.put("isActive", true);
         }
         if (BCrypt.checkpw(password, currentUser.getPassword())) {
-            System.out.println("BLL Credentials match");
             returnMap.put("correctCredentials", true);
-            System.out.println("Validate Creds: " + returnMap.get("correctCredentials"));
         }else{
             //TODO throw custom error
             returnMap.put("correctCredentials", false);
@@ -68,15 +64,6 @@ public class MainControllerBLL {
     public void writeError(MessagePOJO message){
         mongo.writeMessage(message);
     }
-
-    //if (BCrypt.checkpw(candidate_password, stored_hash))
-    //            System.out.println("It matches");
-    //        else
-    //            System.out.println("It does not match");
-    //        System.out.println(pw_hash);
-    //checks the password
-
-
 
 
 

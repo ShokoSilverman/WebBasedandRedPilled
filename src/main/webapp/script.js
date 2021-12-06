@@ -84,8 +84,7 @@ errorChecker = () => {
 }
 
 function userLogin() {
-    console.log("Login Event Hit");
-    console.log("Username = " + document.getElementById("usernameLogin").value);
+    //Retrieve Username and Password.
     let username = document.getElementById("usernameLogin").value;
     let password = document.getElementById("passwordLogin").value;
     let params = "?username=" + username + "&password=" + password;
@@ -93,7 +92,6 @@ function userLogin() {
     //Send Username and Login as Params to the
     request.open("POST", "http://localhost:80/anyone/login" + params, true);
     request.send();
-    console.log(params);
     request.onload = () => {
         //Success returned by API if Valid is correct
         let jsonObject = JSON.parse(request.responseText);
@@ -123,27 +121,23 @@ function userLogin() {
 }
 
 const addUser = () => {
-    console.log('adding User');
     let email = document.querySelector("#email").value;
     let username = document.querySelector("#usernameRegister").value;
     let password = document.querySelector("#passwordRegister").value;
     let securityRoles = ["USER"];
     let isActive = true;
     let newUser = JSON.stringify({username, password, email, securityRoles, isActive});
-    console.log(newUser);
     const request = new XMLHttpRequest();
     request.open("POST", "http://localhost:80/registration/createUser");
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     request.send(newUser);
     request.onload = () =>{
         //alert(request.responseText)
-
         if (request.responseText === "Username or Email already exists!"){
             usernameRegex.innerHTML = request.responseText;
         }else{
             location.href = 'http://localhost:81/';
         }
-
         console.log('user added')
 
     }

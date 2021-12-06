@@ -27,15 +27,12 @@ public class AdminAPI {
     @PatchMapping(path = "/makeAdmin", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(code=HttpStatus.CREATED)
     public String updateUserToAdmin(@RequestBody UsernamePOJO username){
-        System.out.println("here");
-        System.out.println(username);
         return adminBLL.setAdmin(username.getUsername());
     }
 
     @PatchMapping(path = "/isActiveUser", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(code= HttpStatus.CREATED)
     public String disableUser(@RequestBody userDisablePOJO userDisablePOJO){
-        System.out.println(userDisablePOJO.getIsActive());
         return mongo.setIsActive(userDisablePOJO.getUsername(), Boolean.parseBoolean(userDisablePOJO.getIsActive()));
     }
 

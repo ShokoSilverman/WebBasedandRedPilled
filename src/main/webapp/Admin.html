@@ -3,6 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Chadroom - Admin</title>
+    <!--    Checks that the JWT is valid before user can see this page.-->
+    <script>
+        //Verify JWT is correct and return the Payload
+        const parseJWT = () => {
+            let token = loadJWT();
+            if (!token) {
+                return undefined;
+            }
+            let payload = atob(token.split('.')[1]);
+            let jwt = JSON.parse(payload);
+            return jwt;
+        };
+
+        //Pull JWT From Local Storage
+        const loadJWT = () => {
+            let jwt = localStorage.getItem('JWT') ? localStorage.getItem('JWT') : undefined;
+            return jwt;
+        };
+
+        //Confirm the User is an Admin
+        const checkIfAdmin = async () =>{
+            let user = parseJWT();
+            console.log(user.sub);
+            //Ping API for user authorities
+            const response = await fetch("http://localhost:80/anyone/validAdmin", {method: "POST", body: user.sub + ""});
+            const isAdmin = await response.text();
+            return isAdmin
+        }
+
+        //Validate User is Logged In
+        const validate = async () => {
+            //Ping API to compare JWT Tokens
+            const response = await fetch("http://localhost:80/anyone/validate", {method: "POST", body: localStorage.getItem("JWT")});
+            const isValid = await response.text();
+            //If JWT is incorrect route user to registration
+            console.log(checkIfAdmin())
+            if(isValid != 'true' || checkIfAdmin() == false){
+                location.href = '/';
+            }
+        }
+        validate();
+
+    </script>
     <link href="adminStyle.css" rel="stylesheet">
 </head>
 <body>
@@ -35,7 +78,7 @@
 
         </div>
     </div>
-    <div class="btn" onclick="backToRoom()" style="width:200px; position: absolute; right: 10px; top:10px;">ChadRoom</div>
+    <div class="btn" onclick="backToRoom()" id="backButton">ChadRoom</div>
 
     <script>
         const summonChad = () => {
