@@ -11,7 +11,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.KeySpec;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,15 +54,6 @@ public class MainControllerBLL {
         return returnMap;
     }
 
-    public boolean verifyAdmin(String username){
-        UserPOJO currentUser = userRepo.findFirstByUsername(username);
-        String[] userAuthority = currentUser.getSecurityRoles();
-        boolean isAdmin = false;
-        if(Arrays.asList(userAuthority).contains("ADMIN")){
-            isAdmin = true;
-        }
-        return isAdmin;
-    }
 
     public void writeError(MessagePOJO message){
         mongo.writeMessage(message);

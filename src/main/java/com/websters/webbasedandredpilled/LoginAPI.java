@@ -48,7 +48,6 @@ public class LoginAPI {
     //Logout handled by JavaScript
 
     @RequestMapping(value = "/validate", method = RequestMethod.POST)
-    @ResponseStatus(code = HttpStatus.CREATED)
     public boolean validateJWT(@RequestBody String jwtToken) {
         //Compare Token and IF correct return True
         try {
@@ -64,10 +63,4 @@ public class LoginAPI {
         }
         return false;
     }
-
-    @RequestMapping(value = "/validAdmin", method = RequestMethod.POST)
-    public boolean checkUserAuthorities(@RequestBody String username) {
-        return bll.verifyAdmin(username);
-    }
 }
-
